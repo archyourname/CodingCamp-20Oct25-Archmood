@@ -1,149 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Portofolio | CCSE RevoU</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Portal Pont</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
 </head>
+
+
 <body>
-    <header class="header">
-        <a href="#" class="logo">Portfolio.</a>
-        <nav class="navbar">
-            <a href="#home" class="active">HOME</a>
-            <a href="#about">ABOUT</a>
-            <a href="#education">EDUCATION</a>
-            <a href="#skills">SKILL</a>
-            <a href="#projects">PROJECT</a>
-            <a href="#contact">CONTACT</a>
-        </nav>
-    </header>
 
-    <section class="home" id="home">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
+<div id="app">
+
+
+    <!-- =====================================
+         COMPUTER SCENE
+    ====================================== -->
+
+    <div class="computer-scene">
+
+        <div
+            class="computer"
+            onclick="openHome()"
+        >
+
+            <div class="monitor">
+
+                <div class="screen">
+
+                    <div class="screen-content">
+
+                        <p></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="stand"></div>
+
+            <div class="base"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INSTRUCTION -->
+
+    <div class="instruction">
+        🐱 Klik untuk Interaksi
+    </div>
+
+
+
+    <!-- =====================================
+         HOME WEBSITE
+    ====================================== -->
+
+    <section class="home">
+
+
+        <!-- BACKGROUND -->
+
+        <div class="home-background"></div>
+
+
+        <!-- PARTICLES -->
+
+        <canvas id="particles"></canvas>
+
+
+
+        <!-- =================================
+             HOME CONTENT
+        ================================== -->
+
         <div class="home-content">
-            <h3>Hello, I'm</h3>
-            <h1>Nesa Kusuma</h1>
-            <h3>And I'm a <span>IT Ethusiastm</span></h3>
-            <p>I enjoy learning about the world of computer software and hardware.</p>
-            <a href="#contact" class="btn-box">Contact Person</a>
-        </div>
-    </section>
 
-    <section class="about" id="about">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="about-content">
-            <h2>About Me</h2>
-            <p>Hello, my name is Nesa Kusuma, I'm 23 years old.
-                 I currently live in Surakarta and am pursuing my undergraduate degree.
-                  I currently work at a restaurant in the Surakarta area.
-                   With my 8 years of experience in hardware and 5 years in software,
-                    I'm confident and hopeful of working in the IT industry.</p>
-        </div>
-    </section>
+            <div class="hero-content">
 
-    <section class="education" id="education">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="education-content">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Information Technology (IT) in University</h3>
-                <p>AMIKOM Surakarta, 2025 - now</p>
-            </div>
-            <div class="education-item">
-                <h3>English Language Education in University</h3>
-                <p>UIN Raden Mas Said, 2018 - Abandon </p>
-            </div>
-            <div class="education-item">
-                <h3>Social Science at High School</h3>
-                <p>SMA N 1 Banyudono, 2017 - 2020</p>
-            </div>
-            <div class="education-item">
-                <h3>Junior High School</h3>
-                <p>SMA N 2 Sawit, 2014 - 2017</p>
-            </div>
-        </div>
-    </section>
+                <h1>
+                    Portal PontMedusa
+                </h1>
 
-    <section class="skills" id="skills">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="skills-content">
-            <h2>Skills</h2>
-            <div class="skill-item">
-                <h3>Vibe Coding</h3>
-                <p>with, only, and for AI  </p>
-            </div>
-            <div class="skill-item">
-                <h3>Cybersecurity</h3>
-                <p>Mastering malware disaster mitigation, and Cyber attacks </p>
-            </div>
-            <div class="skill-item">
-                <h3>Hardware Master</h3>
-                <p>Mastering about OC, Tweaking, Debloat, etc</p>
-            </div>
-        </div>
-    </section>
 
-    <section class="projects" id="projects">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="projects-content">
-            <h2>My Projects</h2>
-            <div class="carousel">
-                <div class="carousel-inner" id="carousel">
-                    <div class="carousel-item" style="background-image: url('');">
-                        <h3>HIRE ME !</h3>
-                    </div>
-                    <div class="carousel-item" style="background-image: url('');">
-                        <h3>Contact Me</h3>
-                    </div>
-                    <div class="carousel-item" style="background-image: url('');">
-                        <h3>Email : kumarnesa12123@gmail.com</h3>
-                    </div>
+                <!--
+                    SUBTITLE PARALLAX
+                -->
+
+                <div
+                    class="hero-subtitle"
+                    id="heroSubtitle"
+                >
+
+                    <span
+                        class="parallax-text text-1"
+                    >
+                        Computer Freak
+                    </span>
+
+                    <span
+                        class="separator separator-1"
+                    >
+                        |
+                    </span>
+
+
+                    <span
+                        class="parallax-text text-2"
+                    >
+                        Astrophile
+                    </span>
+
+                    <span
+                        class="separator separator-2"
+                    >
+                        |
+                    </span>
+
+
+                    <span
+                        class="parallax-text text-3"
+                    >
+                        Workaholic
+                    </span>
+
                 </div>
-                <div class="carousel-indicators" id="indicators">
-                    <span class="indicator active" onclick="goToSlide(0)"></span>
-                    <span class="indicator" onclick="goToSlide(1)"></span>
-                    <span class="indicator" onclick="goToSlide(2)"></span>
-                </div>
+
             </div>
+
         </div>
+
+
+
+        <!-- =================================
+             FLOATING OBJECTS
+        ================================== -->
+
+        <div class="objects">
+
+
+            <!-- OBJECT 1 -->
+
+            <button
+                class="floating-button object-1"
+                onclick="openDetail(1)"
+                aria-label="About"
+            >
+
+                <img
+                    src="./img/1.png"
+                    alt="About"
+                >
+
+            </button>
+
+
+
+            <!-- OBJECT 2 -->
+
+            <button
+                class="floating-button object-2"
+                onclick="openDetail(2)"
+                aria-label="Project"
+            >
+
+                <img
+                    src="./img/2.png"
+                    alt="Project"
+                >
+
+            </button>
+
+
+
+            <!-- OBJECT 3 -->
+
+            <button
+                class="floating-button object-3"
+                onclick="openDetail(3)"
+                aria-label="Contact"
+            >
+
+                <img
+                    src="./img/3.png"
+                    alt="Contact"
+                >
+
+            </button>
+
+
+        </div>
+
+
     </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-content">
-            <h2>Contact Me</h2>
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
-                <textarea id="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <div class="form-output" id="formOutput">
-                <h3>Message Sent!</h3>
-                <p id="outputName"></p>
-                <p id="outputEmail"></p>
-                <p id="outputMessage"></p>
-            </div>
+
+
+    <!-- =====================================
+         SCENE 1 — ABOUT
+    ====================================== -->
+
+    <section
+        class="detail scene1"
+        id="detail1"
+    >
+
+        <button
+            class="back"
+            onclick="closeDetail(1)"
+        >
+            ← Kembali
+        </button>
+
+
+        <div class="detail-card">
+
+            <h1>
+                SCENE 01
+            </h1>
+
+            <p>
+
+                Selamat datang di halaman About.
+
+                <br><br>
+
+                Scene ini muncul setelah kamu
+                menyentuh objek pertama.
+
+            </p>
+
         </div>
-    </section>
-            </form>
-        </div>
+
     </section>
 
-    <footer class="footer">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <p>&copy; 2077 Archyourname. All rights reserved.</p>
-    </footer>
-    <script src="./js/script.js"></script>
+
+
+    <!-- =====================================
+         SCENE 2 — PROJECT
+    ====================================== -->
+
+    <section
+        class="detail scene2"
+        id="detail2"
+    >
+
+        <button
+            class="back"
+            onclick="closeDetail(2)"
+        >
+            ← Kembali
+        </button>
+
+
+        <div class="detail-card">
+
+            <h1>
+                SCENE 02
+            </h1>
+
+            <p>
+
+                Ini adalah halaman Project.
+
+                <br><br>
+
+                Kamu bisa memasukkan project,
+                aplikasi, portfolio, atau produk
+                di sini.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SCENE 3 — CONTACT
+    ====================================== -->
+
+    <section
+        class="detail scene3"
+        id="detail3"
+    >
+
+        <button
+            class="back"
+            onclick="closeDetail(3)"
+        >
+            ← Kembali
+        </button>
+
+
+        <div class="detail-card">
+
+            <h1>
+                SCENE 03
+            </h1>
+
+            <p>
+
+                Ini adalah halaman Contact.
+
+                <br><br>
+
+                Kamu dapat memasukkan
+                informasi kontak di sini.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =====================================
+     JAVASCRIPT
+====================================== -->
+
+<script src="./js/script.js"></script>
+
 </body>
+
 </html>
