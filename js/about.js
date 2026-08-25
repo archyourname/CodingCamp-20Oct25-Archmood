@@ -1957,7 +1957,7 @@ function interact() {
             setTimeout(() => {
 
                 window.location.href =
-                    "./index.html";
+                    "./home.html";
 
             }, 1000);
 

@@ -1,148 +1,1121 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>LYNCH — Web3 Protocol</title>
 
-    <title>Project & Contact - Portal PontMedusa</title>
-
-    <link
-        rel="stylesheet"
-        href="./css/project.css"
-    >
-
+    <link rel="stylesheet" href="./css/project.css">
 </head>
-
 
 <body>
 
+    <div class="background"></div>
+    <div class="grid"></div>
 
-<!-- =====================================================
-     PROJECT
-===================================================== -->
+    <!-- ================= NAVBAR ================= -->
 
-<section
-    class="scene project page-enter"
-    id="project"
->
+    <nav class="navbar">
+
+        <div class="brand">
+            <div class="logo">
+            LYN<span>CH</span>
+            </div>
+            <a href="./home.html" class="btn back-home">
+                <H4>← BACK TO HOME<H4>
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#network">Network</a></li>
+            <li><a href="#protocol">Protocol</a></li>
+            <li><a href="#ecosystem">Ecosystem</a></li>
+            <li><a href="#token">Token</a></li>
+            <li><a href="#blog">BLOG</a></li>
+            <li><a href="#vdp">Bug Bounty</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+
+        <button class="wallet-btn" id="walletButton">
+            CONNECT WALLET
+        </button>
+
+    </nav>
 
 
-    <a
-        href="./home.html"
-        class="back"
-    >
-        ← Kembali
-    </a>
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <canvas id="networkCanvas"></canvas>
+
+        <div class="hero-content reveal">
+
+            <div class="hero-label">
+                DECENTRALIZED DIGITAL ECOSYSTEM
+            </div>
+
+            <h1>
+                BUILD THE<br>
+                <span>NEXT</span><br>
+                LAYER.
+            </h1>
+
+            <p class="hero-description">
+
+                LYNCH is a conceptual decentralized
+                infrastructure designed for the next
+                generation of digital applications,
+                identity, assets and data.
+
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="#ecosystem" class="btn primary">
+                    ENTER ECOSYSTEM
+                </a>
+
+                <a href="#protocol" class="btn secondary">
+                    EXPLORE PROTOCOL
+                </a>
+
+            </div>
+
+        </div>
+        
 
 
-    <div class="detail-card">
+        <!-- ================= LYC COIN ================= -->
 
-        <h1>
-            SCENE 02
-        </h1>
+        <div class="coin-stage">
+
+            <div class="coin-glow"></div>
+
+            <div class="orbit">
+
+                <div class="orbit-node"></div>
+                <div class="orbit-node"></div>
+                <div class="orbit-node"></div>
+                <div class="orbit-node"></div>
+
+            </div>
 
 
-        <p>
+            <div class="coin">
 
-            Ini adalah halaman Project.
+                <div class="coin-edge"></div>
 
-            <br><br>
+                <div class="coin-face">
 
-            Kamu bisa memasukkan project,
-            aplikasi, portfolio, atau produk
-            di sini.
+                    <div class="coin-ring"></div>
+
+                    <div class="coin-symbol">
+                        LYC
+                    </div>
+
+                </div>
+
+                <div class="coin-face coin-back">
+
+                    <div class="coin-ring"></div>
+
+                    <div class="coin-symbol">
+                        ◈
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="small-coin one">
+                LYC
+            </div>
+
+            <div class="small-coin two">
+                LYC
+            </div>
+
+            <div class="small-coin three">
+                LYC
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= NETWORK ================= -->
+
+    <section class="network-section" id="network">
+
+        <div class="network-header">
+
+            <div>
+
+                <div class="section-label">
+                    NETWORK
+                </div>
+
+                <h2 class="section-title">
+                    STABLE. CONNECTED.<br>
+                    MEET LYNCH.
+                </h2>
+
+            </div>
+
+            <div class="status">
+                NETWORK ONLINE
+            </div>
+
+        </div>
+
+
+        <p class="description reveal">
+
+            The native stable asset of a new Web3 ecosystem.
 
         </p>
 
 
-        <a
-            href="#contact"
-            class="next"
-        >
-            Contact →
-        </a>
+        <div class="stats reveal">
 
-    </div>
+            <div class="stat">
 
-</section>
+                <div
+                    class="stat-value"
+                    data-counter="8291442">
+                    0
+                </div>
 
+                <div class="stat-name">
+                    Block Height
+                </div>
 
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section
-    class="scene contact"
-    id="contact"
->
+            </div>
 
 
-    <a
-        href="./home.html"
-        class="back"
-    >
-        ← Kembali
-    </a>
+            <div class="stat">
+
+                <div
+                    class="stat-value"
+                    data-counter="1284920">
+                    0
+                </div>
+
+                <div class="stat-name">
+                    Transactions
+                </div>
+
+            </div>
 
 
-    <div class="detail-card">
+            <div class="stat">
 
-        <h1>
-            SCENE 03
-        </h1>
+                <div
+                    class="stat-value"
+                    data-counter="842">
+                    0
+                </div>
+
+                <div class="stat-name">
+                    Active Nodes
+                </div>
+
+            </div>
 
 
-        <p>
+            <div class="stat">
 
-            Ini adalah halaman Contact.
+                <div class="stat-value">
+                    42ms
+                </div>
 
-            <br><br>
+                <div class="stat-name">
+                    Network Latency
+                </div>
 
-            Kamu dapat memasukkan
-            informasi kontak di sini.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROTOCOL ================= -->
+
+    <section class="protocol" id="protocol">
+
+        <div class="section-label">
+            PROTOCOL ARCHITECTURE
+        </div>
+
+        <h2 class="section-title">
+            BUILD FOR STABILITY.<br>
+            ENGINEERED FOR SCALE.
+        </h2>
+
+        <p class="description">
+
+            LYNCH is designed as a modular protocol architecture where stable value, liquidity, 
+            and ecosystem utility operate as interconnected layers.
 
         </p>
 
 
-        <a
-            href="#project"
-            class="next"
-        >
-            ← Project
-        </a>
+        <div class="protocol-map">
 
-    </div>
+            <div class="protocol-card reveal">
 
-</section>
+                <div class="protocol-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Identity
+                </h3>
+
+                <p>
+                    Decentralized digital identity
+                    designed to give users control
+                    over their credentials and
+                    reputation.
+                </p>
+
+            </div>
 
 
-<script>
+            <div class="protocol-card reveal">
 
-window.addEventListener(
-    "load",
-    () => {
+                <div class="protocol-icon">
+                    ◇
+                </div>
 
-        requestAnimationFrame(() => {
+                <h3>
+                    Assets
+                </h3>
 
-            document
-                .querySelector(".page-enter")
-                .classList.add("loaded");
+                <p>
+                    Programmable digital assets
+                    designed for ownership,
+                    exchange and decentralized
+                    applications.
+                </p>
 
-        });
+            </div>
 
-    }
-);
 
-</script>
+            <div class="protocol-card reveal">
 
+                <div class="protocol-icon">
+                    ◎
+                </div>
+
+                <h3>
+                    Data
+                </h3>
+
+                <p>
+                    Verifiable data infrastructure
+                    that enables applications to
+                    interact with trusted information.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ECOSYSTEM ================= -->
+
+    <section class="ecosystem" id="ecosystem">
+
+        <div class="section-label">
+            ECOSYSTEM
+        </div>
+
+        <h2 class="section-title">
+            BUILT FOR<br>
+            THE NEXT ERA.
+        </h2>
+
+
+        <div class="ecosystem-grid">
+
+            <div class="eco reveal">
+
+                <div class="eco-glow"></div>
+
+                <span class="eco-number">
+                    LYNCH / FOR PAYMENTS
+                </span>
+
+                <h3>
+                    LYNCH PAY
+                </h3>
+
+                <p>
+                    A decentralized payment layer
+                    for global digital transactions.
+                </p>
+
+                <a href="#" class="eco-link">
+                    EXPLORE →
+                </a>
+
+            </div>
+
+
+            <div class="eco reveal">
+
+                <div class="eco-glow"></div>
+
+                <span class="eco-number">
+                    LYNCH / FOR USER
+                </span>
+
+                <h3>
+                    LYCH ID
+                </h3>
+
+                <p>
+                    Portable decentralized identity
+                    for Web3 applications.
+                </p>
+
+                <a href="#" class="eco-link">
+                    EXPLORE →
+                </a>
+
+            </div>
+
+
+            <div class="eco reveal">
+
+                <div class="eco-glow"></div>
+
+                <span class="eco-number">
+                    LYNCH / FOR DEVELOPER
+                </span>
+
+                <h3>
+                    LYNCH LABS
+                </h3>
+
+                <p>
+                    Research and development focused
+                    on decentralized technology.
+                </p>
+
+                <a href="#" class="eco-link">
+                    EXPLORE →
+                </a>
+
+            </div>
+
+
+            <div class="eco reveal">
+
+                <div class="eco-glow"></div>
+
+                <span class="eco-number">
+                    LYNCH / FOR DEPLOYMENT
+                </span>
+
+                <h3>
+                    LYNCH CLOUD
+                </h3>
+
+                <p>
+                    Distributed compute infrastructure
+                    for scalable Web3 applications.
+                </p>
+
+                <a href="#" class="eco-link">
+                    EXPLORE →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TOKEN ================= -->
+
+    <section class="token-section" id="token">
+
+        <div class="token-showcase">
+
+            <div class="token-coin-container">
+
+                <div class="token-coin"></div>
+
+            </div>
+
+
+            <div class="token-info">
+
+                <div class="section-label">
+                    LYNCH COIN
+                </div>
+
+                <h2>
+                    LYC
+                </h2>
+
+                <p class="description">
+
+                    Meet LYNCH Coin (LYC), A new foundation for value in Web3. 
+                    LYNCH Coin is the conceptual native stable asset of the LYNCH ecosystem, designed to bring stability into an increasingly dynamic digital economy. 
+                    Rather than focusing on speculation, LYNCH Coin is built around a simple idea: Digital value should be accessible, usable, and stable. 
+                    From ecosystem transactions to decentralized applications, LYC is envisioned as a stable layer connecting users, assets, and applications across the LYNCH ecosystem. 
+                    <br><br>One ecosystem.
+                    <br>One stable foundation.
+                    <br>LYNCH COIN.
+
+
+                </p>
+
+                <div class="token-price">
+                    +12.84%
+                </div>
+
+
+                <div class="token-grid">
+
+                    <div class="token-stat">
+
+                        <span>
+                            PRICE
+                        </span>
+
+                        <strong>
+                            $2.481
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-stat">
+
+                        <span>
+                            MARKET CAP
+                        </span>
+
+                        <strong>
+                            $248.2M
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-stat">
+
+                        <span>
+                            TOTAL SUPPLY
+                        </span>
+
+                        <strong>
+                            1B LYC
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-stat">
+
+                        <span>
+                            CIRCULATING
+                        </span>
+
+                        <strong>
+                            420M
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BLOG ================= -->
+
+    <section class="blog" id="blog">
+
+        <div class="section-label">
+            BLOG
+        </div>
+
+        <h2 class="section-title">
+            THE LYNCH <br>
+            JOURNAL.
+        </h2>
+
+        <p class="description">
+
+            Signals from the New Digital Economy. 
+            Research, ecosystem updates, protocol insights, 
+            and ideas shaping the future of decentralized finance.
+
+        </p>
+
+
+        <div class="proposal reveal">
+
+            <div class="proposal-header">
+
+                <span class="proposal-id">
+                    FAQ
+                </span>
+
+                <span class="proposal-status">
+                    ACTIVE
+                </span>
+
+            </div>
+
+
+            <h3>
+                Increase Network Capacity
+            </h3>
+
+            <p>
+                Should the protocol increase its
+                maximum network capacity?
+            </p>
+
+
+            <div class="vote">
+
+                <div class="vote-label">
+
+                    <span>YES</span>
+
+                    <span>82%</span>
+
+                </div>
+
+                <div class="bar">
+                    <span style="width:82%"></span>
+                </div>
+
+            </div>
+
+
+            <div class="vote">
+
+                <div class="vote-label">
+
+                    <span>NO</span>
+
+                    <span>18%</span>
+
+                </div>
+
+                <div class="bar no">
+                    <span style="width:18%"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ================= VDP ================= -->
+
+    <section class="vdp" id="vdp">
+
+        <div class="section-label">
+            SECURITY / VDP
+        </div>
+
+        <div class="vdp-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    FIND A BUG.<br>
+                    PROTECT THE NETWORK.
+                </h2>
+
+                <p class="description">
+                    LYNCH welcomes responsible security researchers
+                    to report vulnerabilities affecting the protocol,
+                    ecosystem and infrastructure.
+                </p>
+
+            </div>
+
+            <div class="vdp-status">
+                <span class="status-dot"></span>
+                VDP ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="vdp-container">
+
+            <!-- INFO -->
+
+            <div class="vdp-info">
+
+                <div class="vdp-terminal">
+
+                    <div class="terminal-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                        <small>
+                            LYNCH-security
+                        </small>
+                    </div>
+
+                    <div class="terminal-body">
+
+                        <p>
+                            <span class="terminal-green">
+                                researcher@
+                            </span>lynchsec:~$
+                        </p>
+
+                        <p>
+                            initiate_vulnerability_report
+                        </p>
+
+                        <br>
+
+                        <p class="terminal-muted">
+                            Responsible disclosure is part of
+                            building a safer decentralized ecosystem.
+                        </p>
+
+                        <p class="terminal-green">
+                            STATUS: ACCEPTING REPORTS
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="vdp-rules">
+
+                    <div>
+                        <span>01</span>
+                        Clearly describe the vulnerability.
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        Include reproducible steps when possible.
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        Avoid accessing or modifying user data.
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        Give the LYNCH team reasonable time to respond.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form
+                class="vdp-form"
+                id="vdpForm"
+            >
+
+                <div class="form-title">
+
+                    <span>
+                        SECURITY REPORT
+                    </span>
+
+                    <small>
+                        VDP-LYNCH
+                    </small>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            RESEARCHER NAME
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your name / alias"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            CONTACT EMAIL
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="researcher@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        VULNERABILITY TYPE
+                    </label>
+
+                    <select
+                        name="type"
+                        required
+                    >
+
+                        <option value="">
+                            Select vulnerability type
+                        </option>
+
+                        <option>
+                            Smart Contract
+                        </option>
+
+                        <option>
+                            Web Application
+                        </option>
+
+                        <option>
+                            API / Backend
+                        </option>
+
+                        <option>
+                            Authentication
+                        </option>
+
+                        <option>
+                            Authorization
+                        </option>
+
+                        <option>
+                            Cryptography
+                        </option>
+
+                        <option>
+                            Infrastructure
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        SEVERITY
+                    </label>
+
+                    <div class="severity-options">
+
+                        <label class="severity">
+                            <input
+                                type="radio"
+                                name="severity"
+                                value="Low"
+                                required
+                            >
+                            <span>LOW</span>
+                        </label>
+
+                        <label class="severity">
+                            <input
+                                type="radio"
+                                name="severity"
+                                value="Medium"
+                            >
+                            <span>MEDIUM</span>
+                        </label>
+
+                        <label class="severity">
+                            <input
+                                type="radio"
+                                name="severity"
+                                value="High"
+                            >
+                            <span>HIGH</span>
+                        </label>
+
+                        <label class="severity">
+                            <input
+                                type="radio"
+                                name="severity"
+                                value="Critical"
+                            >
+                            <span>CRITICAL</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        VULNERABILITY TITLE
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Short description of the issue"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        DESCRIPTION
+                    </label>
+
+                    <textarea
+                        name="description"
+                        rows="6"
+                        placeholder="Describe the vulnerability, impact and affected component..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        PROOF OF CONCEPT / REPRODUCTION
+                    </label>
+
+                    <textarea
+                        name="poc"
+                        rows="5"
+                        placeholder="Provide safe reproduction steps or PoC..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-check">
+
+                    <input
+                        type="checkbox"
+                        id="safeDisclosure"
+                        required
+                    >
+
+                    <label for="safeDisclosure">
+
+                        I agree to follow LYNCH's responsible
+                        disclosure guidelines and will not intentionally
+                        access, modify or destroy user data.
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-report"
+                >
+
+                    SUBMIT SECURITY REPORT
+                    <span>→</span>
+
+                </button>
+
+
+                <div
+                    class="form-message"
+                    id="formMessage"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- ================= ROADMAP ================= -->
+
+    <section class="roadmap" id="roadmap">
+
+        <div class="section-label">
+            ROADMAP
+        </div>
+
+        <h2 class="section-title">
+            FROM GENESIS<br>
+            TO GLOBAL.
+        </h2>
+
+
+        <div class="timeline">
+
+            <div class="phase reveal">
+
+                <div class="phase-dot"></div>
+
+                <div class="phase-year">
+                    2026
+                </div>
+
+                <h3>
+                    GENESIS
+                </h3>
+
+                <p>
+                    Protocol architecture,
+                    infrastructure and
+                    developer foundation.
+                </p>
+
+            </div>
+
+
+            <div class="phase reveal">
+
+                <div class="phase-dot"></div>
+
+                <div class="phase-year">
+                    2027
+                </div>
+
+                <h3>
+                    ECOSYSTEM
+                </h3>
+
+                <p>
+                    Expansion of applications,
+                    integrations and ecosystem
+                    partners.
+                </p>
+
+            </div>
+
+
+            <div class="phase reveal">
+
+                <div class="phase-dot"></div>
+
+                <div class="phase-year">
+                    2028
+                </div>
+
+                <h3>
+                    GLOBAL
+                </h3>
+
+                <p>
+                    Global adoption and
+                    decentralized applications.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                JOIN THE NETWORK
+            </div>
+
+            <h2>
+                BUILD<br>
+                TOGETHER.
+            </h2>
+
+            <p>
+                The next generation of the internet
+                will be built by people who choose
+                to participate.
+            </p>
+
+            <button
+                class="wallet-btn"
+                id="walletButton2">
+
+                CONNECT WALLET
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div>
+            © 2026 LYNCH PROTOCOL
+        </div>
+
+        <div>
+            PROTOCOL · ECOSYSTEM · BLOG
+        </div>
+
+    </footer>
+
+
+    <script src="./js/project.js"></script>
 
 </body>
-
 </html>

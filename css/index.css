@@ -338,3 +338,32 @@ button {
     }
 
 }
+/* ================= LYNCH BRAND ================= */
+
+.brand{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.back-home-logo{
+    margin-top:7px;
+
+    color:#56616b;
+
+    text-decoration:none;
+
+    font-size:7px;
+
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.back-home-logo:hover{
+    color:var(--cyan);
+
+    text-shadow:
+        0 0 10px
+        rgba(0,229,255,.5);
+}
