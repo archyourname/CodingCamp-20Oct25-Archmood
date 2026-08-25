@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Project & Contact - Portal PontMedusa</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/project.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PROJECT
+===================================================== -->
+
+<section
+    class="scene project page-enter"
+    id="project"
+>
+
+
+    <a
+        href="./home.html"
+        class="back"
+    >
+        ← Kembali
+    </a>
+
+
+    <div class="detail-card">
+
+        <h1>
+            SCENE 02
+        </h1>
+
+
+        <p>
+
+            Ini adalah halaman Project.
+
+            <br><br>
+
+            Kamu bisa memasukkan project,
+            aplikasi, portfolio, atau produk
+            di sini.
+
+        </p>
+
+
+        <a
+            href="#contact"
+            class="next"
+        >
+            Contact →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="scene contact"
+    id="contact"
+>
+
+
+    <a
+        href="./home.html"
+        class="back"
+    >
+        ← Kembali
+    </a>
+
+
+    <div class="detail-card">
+
+        <h1>
+            SCENE 03
+        </h1>
+
+
+        <p>
+
+            Ini adalah halaman Contact.
+
+            <br><br>
+
+            Kamu dapat memasukkan
+            informasi kontak di sini.
+
+        </p>
+
+
+        <a
+            href="#project"
+            class="next"
+        >
+            ← Project
+        </a>
+
+    </div>
+
+</section>
+
+
+<script>
+
+window.addEventListener(
+    "load",
+    () => {
+
+        requestAnimationFrame(() => {
+
+            document
+                .querySelector(".page-enter")
+                .classList.add("loaded");
+
+        });
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

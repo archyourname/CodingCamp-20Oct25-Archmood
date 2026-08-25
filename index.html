@@ -10,11 +10,11 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Portal Pont</title>
+    <title>Portal PontMedusa</title>
 
     <link
         rel="stylesheet"
-        href="./css/style.css"
+        href="./css/index.css"
     >
 
 </head>
@@ -23,11 +23,6 @@
 <body>
 
 <div id="app">
-
-
-    <!-- =====================================
-         COMPUTER SCENE
-    ====================================== -->
 
     <div class="computer-scene">
 
@@ -38,15 +33,7 @@
 
             <div class="monitor">
 
-                <div class="screen">
-
-                    <div class="screen-content">
-
-                        <p></p>
-
-                    </div>
-
-                </div>
+                <div class="screen"></div>
 
             </div>
 
@@ -59,286 +46,40 @@
     </div>
 
 
-    <!-- INSTRUCTION -->
-
     <div class="instruction">
         🐱 Klik untuk Interaksi
     </div>
 
-
-
-    <!-- =====================================
-         HOME WEBSITE
-    ====================================== -->
-
-    <section class="home">
-
-
-        <!-- BACKGROUND -->
-
-        <div class="home-background"></div>
-
-
-        <!-- PARTICLES -->
-
-        <canvas id="particles"></canvas>
-
-
-
-        <!-- =================================
-             HOME CONTENT
-        ================================== -->
-
-        <div class="home-content">
-
-            <div class="hero-content">
-
-                <h1>
-                    Portal PontMedusa
-                </h1>
-
-
-                <!--
-                    SUBTITLE PARALLAX
-                -->
-
-                <div
-                    class="hero-subtitle"
-                    id="heroSubtitle"
-                >
-
-                    <span
-                        class="parallax-text text-1"
-                    >
-                        Computer Freak
-                    </span>
-
-                    <span
-                        class="separator separator-1"
-                    >
-                        |
-                    </span>
-
-
-                    <span
-                        class="parallax-text text-2"
-                    >
-                        Astrophile
-                    </span>
-
-                    <span
-                        class="separator separator-2"
-                    >
-                        |
-                    </span>
-
-
-                    <span
-                        class="parallax-text text-3"
-                    >
-                        Workaholic
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================
-             FLOATING OBJECTS
-        ================================== -->
-
-        <div class="objects">
-
-
-            <!-- OBJECT 1 -->
-
-            <button
-                class="floating-button object-1"
-                onclick="openDetail(1)"
-                aria-label="About"
-            >
-
-                <img
-                    src="./img/1.png"
-                    alt="About"
-                >
-
-            </button>
-
-
-
-            <!-- OBJECT 2 -->
-
-            <button
-                class="floating-button object-2"
-                onclick="openDetail(2)"
-                aria-label="Project"
-            >
-
-                <img
-                    src="./img/2.png"
-                    alt="Project"
-                >
-
-            </button>
-
-
-
-            <!-- OBJECT 3 -->
-
-            <button
-                class="floating-button object-3"
-                onclick="openDetail(3)"
-                aria-label="Contact"
-            >
-
-                <img
-                    src="./img/3.png"
-                    alt="Contact"
-                >
-
-            </button>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =====================================
-         SCENE 1 — ABOUT
-    ====================================== -->
-
-    <section
-        class="detail scene1"
-        id="detail1"
-    >
-
-        <button
-            class="back"
-            onclick="closeDetail(1)"
-        >
-            ← Kembali
-        </button>
-
-
-        <div class="detail-card">
-
-            <h1>
-                SCENE 01
-            </h1>
-
-            <p>
-
-                Selamat datang di halaman About.
-
-                <br><br>
-
-                Scene ini muncul setelah kamu
-                menyentuh objek pertama.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         SCENE 2 — PROJECT
-    ====================================== -->
-
-    <section
-        class="detail scene2"
-        id="detail2"
-    >
-
-        <button
-            class="back"
-            onclick="closeDetail(2)"
-        >
-            ← Kembali
-        </button>
-
-
-        <div class="detail-card">
-
-            <h1>
-                SCENE 02
-            </h1>
-
-            <p>
-
-                Ini adalah halaman Project.
-
-                <br><br>
-
-                Kamu bisa memasukkan project,
-                aplikasi, portfolio, atau produk
-                di sini.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         SCENE 3 — CONTACT
-    ====================================== -->
-
-    <section
-        class="detail scene3"
-        id="detail3"
-    >
-
-        <button
-            class="back"
-            onclick="closeDetail(3)"
-        >
-            ← Kembali
-        </button>
-
-
-        <div class="detail-card">
-
-            <h1>
-                SCENE 03
-            </h1>
-
-            <p>
-
-                Ini adalah halaman Contact.
-
-                <br><br>
-
-                Kamu dapat memasukkan
-                informasi kontak di sini.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
 </div>
 
 
-<!-- =====================================
-     JAVASCRIPT
-====================================== -->
+<script>
 
-<script src="./js/script.js"></script>
+function openHome() {
+
+    sessionStorage.setItem(
+        "fromComputer",
+        "true"
+    );
+
+    document
+        .querySelector(".computer-scene")
+        .classList.add("zoom-out");
+
+    document
+        .querySelector(".instruction")
+        .classList.add("hide");
+
+    setTimeout(() => {
+
+        window.location.href =
+            "./home.html";
+
+    }, 1200);
+
+}
+
+</script>
 
 </body>
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>About - Portal PontMedusa</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/about.css"
+    >
+
+</head>
+
+
+<body>
+
+<section class="scene page-enter">
+
+
+    <a
+        href="./home.html"
+        class="back"
+    >
+        ← Kembali
+    </a>
+
+
+    <div class="detail-card">
+
+        <h1>
+            SCENE 01
+        </h1>
+
+
+        <p>
+
+            Selamat datang di halaman About.
+
+            <br><br>
+
+            Scene ini muncul setelah kamu
+            menyentuh objek pertama.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+window.addEventListener(
+    "load",
+    () => {
+
+        requestAnimationFrame(() => {
+
+            document
+                .querySelector(".page-enter")
+                .classList.add("loaded");
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
