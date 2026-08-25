@@ -2,25 +2,29 @@
    GLOBAL
 ========================================= */
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html,
-body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
+body {
+    margin: 0;
 
-    background:#05070d;
-    color:#fff;
+    width: 100%;
+    height: 100%;
 
-    font-family:Inter,system-ui,sans-serif;
-}
+    overflow: hidden;
 
-body{
-    user-select:none;
+    background: #05070d;
+    color: #fff;
+
+    font-family: Inter, system-ui, sans-serif;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    overscroll-behavior: none;
 }
 
 
@@ -28,19 +32,22 @@ body{
    GAME
 ========================================= */
 
-#game{
-    position:relative;
+#game {
+    position: relative;
 
-    width:100vw;
-    height:100vh;
+    width: 100vw;
+    height: 100vh;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    background:linear-gradient(
-        #080b17 0%,
-        #11132a 52%,
-        #070912 100%
-    );
+    background:
+        linear-gradient(
+            #080b17 0%,
+            #11132a 52%,
+            #070912 100%
+        );
+
+    touch-action: none;
 }
 
 
@@ -48,13 +55,17 @@ body{
    CANVAS
 ========================================= */
 
-canvas{
-    position:absolute;
+canvas {
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
-    width:100%;
-    height:100%;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    touch-action: none;
 }
 
 
@@ -62,14 +73,14 @@ canvas{
    HUD
 ========================================= */
 
-#hud{
-    position:absolute;
+#hud {
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    z-index:10;
+    z-index: 10;
 }
 
 
@@ -77,90 +88,95 @@ canvas{
    BRAND
 ========================================= */
 
-.brand{
-    position:absolute;
+.brand {
+    position: absolute;
 
-    left:24px;
-    top:20px;
+    left: 24px;
+    top: 20px;
 
-    font-size:13px;
+    font-size: 13px;
 
-    letter-spacing:4px;
+    letter-spacing: 4px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    color:#9eeaff;
+    color: #9eeaff;
 
     text-shadow:
         0 0 15px #00d9ff;
+
+    white-space: nowrap;
 }
 
 
 /* =========================================
    PC KEYBOARD CONTROLS
+   DESKTOP: KANAN ATAS
 ========================================= */
 
-.controls{
-    position:absolute;
+.controls {
+    position: absolute;
 
-    top:20px;
-    right:24px;
+    top: 20px;
+    right: 24px;
 
-    left:auto;
+    left: auto;
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:flex-end;
+    align-items: flex-end;
 
-    gap:8px;
+    gap: 8px;
 
-    font-size:12px;
+    font-size: 12px;
 
-    color:#dce7f8;
+    color: #dce7f8;
 
-    pointer-events:none;
+    pointer-events: none;
 }
 
-.controls div{
-    display:flex;
 
-    align-items:center;
+.controls div {
+    display: flex;
 
-    justify-content:flex-end;
+    align-items: center;
 
-    gap:5px;
+    justify-content: flex-end;
 
-    min-height:24px;
+    gap: 5px;
 
-    white-space:nowrap;
+    min-height: 24px;
+
+    white-space: nowrap;
 }
 
-.controls kbd{
-    display:inline-flex;
 
-    align-items:center;
-    justify-content:center;
+.controls kbd {
+    display: inline-flex;
 
-    min-width:24px;
-    height:22px;
+    align-items: center;
+    justify-content: center;
 
-    padding:2px 6px;
+    min-width: 24px;
+    height: 22px;
 
-    border:1px solid #56617b;
+    padding: 2px 6px;
 
-    border-radius:4px;
+    border: 1px solid #56617b;
 
-    background:#111728;
+    border-radius: 4px;
 
-    color:#fff;
+    background: #111728;
 
-    font-family:inherit;
+    color: #fff;
 
-    font-size:11px;
+    font-family: inherit;
 
-    font-weight:600;
+    font-size: 11px;
+
+    font-weight: 600;
 
     box-shadow:
         inset 0 0 8px #ffffff08,
@@ -172,55 +188,59 @@ canvas{
    DIALOG
 ========================================= */
 
-#dialog{
-    display:none;
+#dialog {
+    display: none;
 
-    position:absolute;
+    position: absolute;
 
-    left:50%;
-    bottom:7%;
+    left: 50%;
+    bottom: 7%;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    width:min(720px,90vw);
+    width: min(720px, 90vw);
 
-    padding:20px 24px;
+    padding: 20px 24px;
 
-    border:1px solid #35d8ff55;
+    border: 1px solid #35d8ff55;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    background:#080d18e8;
+    background: #080d18e8;
 
     box-shadow:
         0 0 40px #00bfff18,
         inset 0 0 30px #00bfff08;
 
-    backdrop-filter:blur(8px);
+    backdrop-filter: blur(8px);
 
-    pointer-events:none;
+    pointer-events: none;
 }
 
-#dialog .name{
-    margin-bottom:8px;
 
-    color:#61e6ff;
+#dialog .name {
+    margin-bottom: 8px;
 
-    font-weight:700;
+    color: #61e6ff;
 
-    letter-spacing:2px;
+    font-weight: 700;
 
-    font-size:12px;
+    letter-spacing: 2px;
 
-    text-transform:uppercase;
+    font-size: 12px;
+
+    text-transform: uppercase;
 }
 
-#dialog .text{
-    font-size:16px;
 
-    line-height:1.55;
+#dialog .text {
+    font-size: 16px;
 
-    color:#e8edf8;
+    line-height: 1.55;
+
+    color: #e8edf8;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -228,39 +248,35 @@ canvas{
    INTERACTION PROMPT
 ========================================= */
 
-#prompt{
-    position:absolute;
+#prompt {
+    position: absolute;
 
-    left:50%;
-    bottom:18%;
+    left: 50%;
+    bottom: 18%;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    padding:8px 13px;
+    padding: 8px 13px;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    background:#080d18cc;
+    background: #080d18cc;
 
-    border:1px solid #ffffff25;
+    border: 1px solid #ffffff25;
 
-    color:#dce7f8;
+    color: #dce7f8;
 
-    font-size:12px;
+    font-size: 12px;
 
-    opacity:0;
+    opacity: 0;
 
     transition:
-        opacity .2s ease,
-        transform .2s ease;
+        opacity 0.2s ease,
+        transform 0.2s ease;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    white-space:nowrap;
-}
-
-#prompt.show{
-    opacity:1;
+    white-space: nowrap;
 }
 
 
@@ -268,12 +284,12 @@ canvas{
    VIGNETTE
 ========================================= */
 
-#vignette{
-    position:absolute;
+#vignette {
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
-    pointer-events:none;
+    pointer-events: none;
 
     background:
         radial-gradient(
@@ -282,7 +298,7 @@ canvas{
             #0009 100%
         );
 
-    z-index:5;
+    z-index: 5;
 }
 
 
@@ -290,58 +306,72 @@ canvas{
    FADE
 ========================================= */
 
-#fade{
-    position:absolute;
+#fade {
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
-    background:#000;
+    background: #000;
 
-    opacity:0;
+    opacity: 0;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    transition:opacity 1s;
+    transition: opacity 1s;
 
-    z-index:100;
+    z-index: 100;
 }
 
 
 /* =========================================
-   MOBILE BUTTONS
+   MOBILE CONTROLS
    DEFAULT: HIDDEN
 ========================================= */
 
-.mobile{
-    display:none;
+.mobile {
+    display: none;
 
-    position:absolute;
+    position: absolute;
 
-    left:20px;
-    right:20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
 
-    bottom:20px;
+    align-items: center;
 
-    align-items:center;
+    justify-content: space-between;
 
-    justify-content:space-between;
+    pointer-events: none;
 
-    pointer-events:none;
+    z-index: 20;
 
-    z-index:20;
+    touch-action: none;
 }
 
 
 /* =========================================
-   MOVEMENT BUTTONS
+   MOVEMENT
 ========================================= */
 
-.mobile .movement{
-    display:flex;
+.mobile .movement {
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:8px;
+    gap: 8px;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.mobile .actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
 }
 
 
@@ -349,41 +379,46 @@ canvas{
    MOBILE BUTTON
 ========================================= */
 
-.mobile button{
-    pointer-events:auto;
+.mobile button {
+    pointer-events: auto;
 
-    width:58px;
-    height:58px;
+    width: 58px;
+    height: 58px;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
 
-    border:1px solid #ffffff30;
+    border: 1px solid #ffffff30;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:#0c1322cc;
+    background: #0c1322cc;
 
-    color:#fff;
+    color: #fff;
 
-    font-size:22px;
+    font-size: 22px;
 
-    font-family:inherit;
+    font-family: inherit;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    backdrop-filter:blur(5px);
+    backdrop-filter: blur(5px);
 
     box-shadow:
         0 4px 15px #0006,
         inset 0 0 12px #ffffff05;
 
     transition:
-        background .15s ease,
-        transform .15s ease,
-        border-color .15s ease;
+        background 0.15s ease,
+        transform 0.15s ease,
+        border-color 0.15s ease;
+
+    touch-action: none;
+
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 
@@ -391,12 +426,12 @@ canvas{
    MOBILE BUTTON ACTIVE
 ========================================= */
 
-.mobile button:active{
-    transform:scale(.92);
+.mobile button:active {
+    transform: scale(0.92);
 
-    background:#18243dcc;
+    background: #18243dcc;
 
-    border-color:#38e8ff66;
+    border-color: #38e8ff66;
 }
 
 
@@ -404,143 +439,14 @@ canvas{
    MOBILE BUTTON HOVER
 ========================================= */
 
-.mobile button:hover{
-    background:#121d31e8;
+@media (hover: hover) {
 
-    border-color:#38e8ff55;
-}
+    .mobile button:hover {
+        background: #121d31e8;
 
-
-/* =========================================
-   MOBILE / TABLET
-========================================= */
-
-@media(max-width:700px){
-
-    /* Sembunyikan petunjuk keyboard */
-
-    .controls{
-        display:none;
+        border-color: #38e8ff55;
     }
 
-
-    /* Tampilkan tombol mobile */
-
-    .mobile{
-        display:flex;
-
-        left:16px;
-        right:16px;
-
-        bottom:18px;
-    }
-
-
-    /* Brand */
-
-    .brand{
-        left:14px;
-        top:14px;
-
-        font-size:10px;
-    }
-
-
-    /* Dialog */
-
-    #dialog{
-        width:94vw;
-
-        padding:16px 18px;
-    }
-
-    #dialog .text{
-        font-size:14px;
-    }
-
-
-    /* Prompt */
-
-    #prompt{
-        bottom:25%;
-    }
-
-
-    /* Mobile button */
-
-    .mobile button{
-        width:56px;
-        height:56px;
-
-        font-size:21px;
-    }
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media(max-width:400px){
-
-    .mobile{
-        left:12px;
-        right:12px;
-
-        bottom:12px;
-    }
-
-    .mobile .movement{
-        gap:6px;
-    }
-
-    .mobile button{
-        width:50px;
-        height:50px;
-
-        font-size:19px;
-    }
-
-    #prompt{
-        font-size:11px;
-
-        padding:7px 11px;
-    }
-}
-
-
-/* =========================================
-   LANDSCAPE MOBILE
-========================================= */
-
-@media(max-width:700px) and (orientation:landscape){
-
-    .mobile{
-        bottom:12px;
-    }
-
-    .mobile button{
-        width:48px;
-        height:48px;
-
-        font-size:18px;
-    }
-
-    #prompt{
-        bottom:20%;
-    }
-}
-
-/* =========================================
-   MOBILE ACTIONS
-========================================= */
-
-.mobile .actions{
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
 }
 
 
@@ -548,10 +454,218 @@ canvas{
    INTERACT BUTTON
 ========================================= */
 
-#interact{
-    font-size:16px !important;
+#interact {
+    font-size: 16px !important;
 
-    font-weight:700;
+    font-weight: 700;
 
-    letter-spacing:1px;
+    letter-spacing: 1px;
 }
+
+
+/* =========================================
+   MOBILE / TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    /* HIDE PC CONTROLS */
+
+    .controls {
+        display: none;
+    }
+
+
+    /* MOBILE CONTROLS */
+
+    .mobile {
+        display: flex;
+
+        left: 16px;
+        right: 16px;
+
+        bottom: 18px;
+    }
+
+
+    /* BRAND */
+
+    .brand {
+        left: 14px;
+        top: 14px;
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+
+        max-width: 70%;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* DIALOG */
+
+    #dialog {
+        width: 94vw;
+
+        bottom: 17%;
+
+        padding: 16px 18px;
+
+        max-height: 35vh;
+
+        overflow-y: auto;
+
+        overscroll-behavior: contain;
+    }
+
+
+    #dialog .text {
+        font-size: 14px;
+
+        line-height: 1.5;
+    }
+
+
+    /* PROMPT */
+
+    #prompt {
+        bottom: 30%;
+
+        max-width: 90vw;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* BUTTON */
+
+    .mobile button {
+        width: 56px;
+        height: 56px;
+
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .mobile {
+        left: 12px;
+        right: 12px;
+
+        bottom: 12px;
+    }
+
+
+    .mobile .movement,
+    .mobile .actions {
+        gap: 6px;
+    }
+
+
+    .mobile button {
+        width: 50px;
+        height: 50px;
+
+        font-size: 19px;
+    }
+
+
+    #prompt {
+        font-size: 11px;
+
+        padding: 7px 11px;
+
+        bottom: 27%;
+    }
+
+
+    #dialog {
+        bottom: 18%;
+
+        max-height: 38vh;
+    }
+
+}
+
+
+/* =========================================
+   LANDSCAPE MOBILE
+========================================= */
+
+@media (max-width: 700px) and (orientation: landscape) {
+
+    .mobile {
+        bottom: 10px;
+    }
+
+
+    .mobile button {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+
+    #prompt {
+        bottom: 20%;
+    }
+
+
+    #dialog {
+        bottom: 12%;
+
+        max-height: 45vh;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL HEIGHT
+========================================= */
+
+@media (max-height: 500px) {
+
+    .brand {
+        top: 8px;
+    }
+
+
+    .mobile {
+        bottom: 8px;
+    }
+
+
+    #dialog {
+        bottom: 15%;
+
+        max-height: 40vh;
+
+        padding: 12px 15px;
+    }
+
+
+    #dialog .text {
+        font-size: 13px;
+    }
+
+
+    #prompt {
+        bottom: 22%;
+    }
+
+}
+
