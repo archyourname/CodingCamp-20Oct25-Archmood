@@ -31,11 +31,15 @@
             onclick="openHome()"
         >
 
-            <div class="monitor">
+<div class="monitor">
 
-                <div class="screen"></div>
+            <embed
+                src="./img/intro.svg"
+                type="image/svg+xml"
+                class="screen"
+            >
 
-            </div>
+        </div>
 
             <div class="stand"></div>
 
@@ -53,33 +57,7 @@
 </div>
 
 
-<script>
-
-function openHome() {
-
-    sessionStorage.setItem(
-        "fromComputer",
-        "true"
-    );
-
-    document
-        .querySelector(".computer-scene")
-        .classList.add("zoom-out");
-
-    document
-        .querySelector(".instruction")
-        .classList.add("hide");
-
-    setTimeout(() => {
-
-        window.location.href =
-            "./home.html";
-
-    }, 1200);
-
-}
-
-</script>
+<script src="./js/index.js"></script>
 
 </body>
 
