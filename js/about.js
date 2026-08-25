@@ -10,29 +10,21 @@ let H = window.innerHeight;
 let D = window.devicePixelRatio || 1;
 
 function resize() {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    D = Math.max(1, window.devicePixelRatio || 1);
+  W = window.innerWidth;
+  H = window.innerHeight;
+  D = Math.max(1, window.devicePixelRatio || 1);
 
-    canvas.width = Math.floor(W * D);
-    canvas.height = Math.floor(H * D);
+  canvas.width = Math.floor(W * D);
+  canvas.height = Math.floor(H * D);
 
-    canvas.style.width = W + "px";
-    canvas.style.height = H + "px";
+  canvas.style.width = W + "px";
+  canvas.style.height = H + "px";
 
-    ctx.setTransform(
-        D,
-        0,
-        0,
-        D,
-        0,
-        0
-    );
+  ctx.setTransform(D, 0, 0, D, 0, 0);
 }
 
 window.addEventListener("resize", resize);
 resize();
-
 
 /* =========================================
    INPUT
@@ -42,284 +34,254 @@ const keys = {};
 
 let leaving = false;
 
-const preventKeys = [
-    " ",
-    "arrowleft",
-    "arrowright",
-    "arrowup",
-    "arrowdown"
-];
+const preventKeys = [" ", "arrowleft", "arrowright", "arrowup", "arrowdown"];
 
-window.addEventListener("keydown", e => {
+window.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
 
-    const key = e.key.toLowerCase();
+  keys[key] = true;
 
-    keys[key] = true;
+  if (preventKeys.includes(key)) {
+    e.preventDefault();
+  }
 
-    if (preventKeys.includes(key)) {
-        e.preventDefault();
-    }
-
-    if (key === "e" && !e.repeat) {
-        interact();
-    }
-
+  if (key === "e" && !e.repeat) {
+    interact();
+  }
 });
 
-window.addEventListener("keyup", e => {
-
-    keys[e.key.toLowerCase()] = false;
-
+window.addEventListener("keyup", (e) => {
+  keys[e.key.toLowerCase()] = false;
 });
-
 
 /* =========================================
    WORLD
 ========================================= */
 
 const world = {
-    w: 4300,
-    ground: 0
+  w: 4300,
+  ground: 0,
 };
-
 
 /* =========================================
    PLAYER
 ========================================= */
 
 const cat = {
+  x: 450,
+  y: 0,
 
-    x: 450,
-    y: 0,
+  vx: 0,
+  vy: 0,
 
-    vx: 0,
-    vy: 0,
+  w: 46,
+  h: 30,
 
-    w: 46,
-    h: 30,
+  dir: 1,
 
-    dir: 1,
-
-    onGround: true,
-    jump: false
-
+  onGround: true,
+  jump: false,
 };
-
 
 let camX = 0;
 let time = 0;
-
 
 /* =========================================
    PLATFORM
 ========================================= */
 
 const platforms = [
-    {
-        x: 0,
-        y: 0,
-        w: 4300,
-        h: 42
-    }
+  {
+    x: 0,
+    y: 0,
+    w: 4300,
+    h: 42,
+  },
 ];
-
 
 /* =========================================
    NPC
 ========================================= */
 
 const npcs = [
+  {
+    x: 760,
+    y: 0,
+    name: "Pont-Putih",
+    color: "#d6c59c",
+    text: "Halo, Kucing kecil... Apakah kamu tersesat?",
+  },
 
-    {
-        x: 760,
-        y: 0,
-        name: "Pont-Putih",
-        color: "#d6c59c",
-        text: "Halo, Kucing kecil... Apakah kamu tersesat?"
-    },
+  {
+    x: 2020,
+    y: 0,
+    name: "Pont-Biru",
+    color: "#7fe8ff",
+    text: "Celakalah setiap pengumpat lagi pencela. Yang mengumpulkan harta dan menghitung-hitungnya. Dia mengira bahwa hartanya itu dapat mengekalkannya.",
+  },
 
-    {
-        x: 2020,
-        y: 0,
-        name: "Pont-Biru",
-        color: "#7fe8ff",
-        text: "Celakalah setiap pengumpat lagi pencela. Yang mengumpulkan harta dan menghitung-hitungnya. Dia mengira bahwa hartanya itu dapat mengekalkannya."
-    },
-
-    {
-        x: 3300,
-        y: 0,
-        name: "Pont-Merah",
-        color: "#b7a2ff",
-        text: "Orang yang kuat bukan mereka yang tidak pernah menangis, namun mereka yang tetap bangkit meski jatuh berkali-kali."
-    }
-
+  {
+    x: 3300,
+    y: 0,
+    name: "Pont-Merah",
+    color: "#b7a2ff",
+    text: "Orang yang kuat bukan mereka yang tidak pernah menangis, namun mereka yang tetap bangkit meski jatuh berkali-kali.",
+  },
 ];
-
 
 /* =========================================
    NEON SIGN
 ========================================= */
 
 const signs = [
+  {
+    x: 430,
+    y: 250,
+    text: "PONTMEDUSA",
+    color: "#38e8ff",
+  },
 
-    {
-        x: 430,
-        y: 250,
-        text: "PONTMEDUSA",
-        color: "#38e8ff"
-    },
+  {
+    x: 930,
+    y: 330,
+    text: "SOFTWARE ENGINEER",
+    color: "#ffe35a",
+  },
 
-    {
-        x: 930,
-        y: 330,
-        text: "SOFTWARE ENGINEER",
-        color: "#ffe35a"
-    },
+  {
+    x: 1510,
+    y: 260,
+    text: "HARDWARE ENGINEER",
+    color: "#ff4c9a",
+  },
 
-    {
-        x: 1510,
-        y: 260,
-        text: "HARDWARE ENGINEER",
-        color: "#ff4c9a"
-    },
+  {
+    x: 2350,
+    y: 300,
+    text: "NETWORK ENGINEER",
+    color: "#b879ff",
+  },
 
-    {
-        x: 2350,
-        y: 300,
-        text: "NETWORK ENGINEER",
-        color: "#b879ff"
-    },
-
-    {
-        x: 3100,
-        y: 250,
-        text: "CYBERSECURITY",
-        color: "#55ff9a"
-    }
-
+  {
+    x: 3100,
+    y: 250,
+    text: "CYBERSECURITY",
+    color: "#55ff9a",
+  },
 ];
-
 
 /* =========================================
    OBJECTS
 ========================================= */
 
 const objects = [
+  {
+    x: 560,
+    y: 0,
+    type: "cardboard",
+    name: "Kardus Basah",
+    text: "Kardus ini berisi banyak suku cadang komputer. Sayangnya, sebagian besar rusak terkena hujan. Entah pemiliknya sengaja meninggalkannya, atau hanya sedang mencoba mengubur kembali hobi yang dulu pernah ditinggalkan—meski pada akhirnya selalu kembali.",
+  },
 
-    {
-        x: 560,
-        y: 0,
-        type: "cardboard",
-        name: "Kardus Basah",
-        text: "Kardus ini berisi banyak suku cadang komputer. Sayangnya, sebagian besar rusak terkena hujan. Entah pemiliknya sengaja meninggalkannya, atau hanya sedang mencoba mengubur kembali hobi yang dulu pernah ditinggalkan—meski pada akhirnya selalu kembali."
-    },
+  {
+    x: 1080,
+    y: 0,
+    type: "trash",
+    name: "Tempat Sampah",
+    text: "Tak ada yang menarik di sini. Isinya kosong, tapi suara tetesan air hujannya paling terdengar.",
+  },
 
-    {
-        x: 1080,
-        y: 0,
-        type: "trash",
-        name: "Tempat Sampah",
-        text: "Tak ada yang menarik di sini. Isinya kosong, tapi suara tetesan air hujannya paling terdengar."
-    },
+  {
+    x: 1380,
+    y: 0,
+    type: "billboard",
+    name: "Papan Pengumuman",
+    text: "Sebuah papan pengumuman. Di sana tertempel sebuah laporan orang hilang. Namanya Archyourname. Terakhir kali terlihat, ia mengenakan kacamata dan baju hitam, serta membawa tas berwarna putih. Warga diminta segera menghubungi pihak terkait jika menemukan seseorang yang sesuai dengan ciri-ciri pada gambar.",
+  },
 
-    {
-        x: 1380,
-        y: 0,
-        type: "billboard",
-        name: "Papan Pengumuman",
-        text: "Sebuah papan pengumuman. Di sana tertempel sebuah laporan orang hilang. Namanya Archyourname. Terakhir kali terlihat, ia mengenakan kacamata dan baju hitam, serta membawa tas berwarna putih. Warga diminta segera menghubungi pihak terkait jika menemukan seseorang yang sesuai dengan ciri-ciri pada gambar."
-    },
+  {
+    x: 1710,
+    y: 0,
+    type: "box",
+    name: "Peti Kecil",
+    text: "Ada beberapa berkas di dalamnya. Sepertinya sudah lama disimpan—mungkin pemiliknya masih menunggu satu panggilan yang tak kunjung datang.",
+  },
 
-    {
-        x: 1710,
-        y: 0,
-        type: "box",
-        name: "Peti Kecil",
-        text: "Ada beberapa berkas di dalamnya. Sepertinya sudah lama disimpan—mungkin pemiliknya masih menunggu satu panggilan yang tak kunjung datang."
-    },
+  {
+    x: 2060,
+    y: 0,
+    type: "bicycle",
+    name: "Sepeda",
+    text: "Sepeda tua ini masih bisa digunakan. Rodanya mulai berkarat, tapi masih terus berputar. Mungkin pemiliknya tidak sengaja meninggalkannya di sini—atau mungkin hidup memaksanya berjalan tanpa pilihan lain.",
+  },
 
-    {
-        x: 2060,
-        y: 0,
-        type: "bicycle",
-        name: "Sepeda",
-        text: "Sepeda tua ini masih bisa digunakan. Rodanya mulai berkarat, tapi masih terus berputar. Mungkin pemiliknya tidak sengaja meninggalkannya di sini—atau mungkin hidup memaksanya berjalan tanpa pilihan lain."
-    },
+  {
+    x: 2500,
+    y: 0,
+    type: "cardboard",
+    name: "Kardus",
+    text: "Kardus kosong. Sepertinya cukup untuk melindungi dari hujan.",
+  },
 
-    {
-        x: 2500,
-        y: 0,
-        type: "cardboard",
-        name: "Kardus",
-        text: "Kardus kosong. Sepertinya cukup untuk melindungi dari hujan."
-    },
+  {
+    x: 2780,
+    y: 0,
+    type: "car",
+    name: "Mobil Patroli",
+    text: "Mobil tua dengan toa di atap. Lampunya masih menyala redup, seolah masih bertugas, walaupun entah apa yang sebenarnya sedang dicari.",
+  },
 
-    {
-        x: 2780,
-        y: 0,
-        type: "car",
-        name: "Mobil Patroli",
-        text: "Mobil tua dengan toa di atap. Lampunya masih menyala redup, seolah masih bertugas, walaupun entah apa yang sebenarnya sedang dicari."
-    },
+  {
+    x: 3230,
+    y: 0,
+    type: "trash",
+    name: "Tong Sampah",
+    text: "Banyak kertas berisi kode berserakan di sini. Sepertinya seseorang menjadikan tempat ini sebagai tempat sampah pribadinya. Lucu juga... begitu takut rahasianya terbongkar, tapi membuangnya sembarangan.",
+  },
 
-    {
-        x: 3230,
-        y: 0,
-        type: "trash",
-        name: "Tong Sampah",
-        text: "Banyak kertas berisi kode berserakan di sini. Sepertinya seseorang menjadikan tempat ini sebagai tempat sampah pribadinya. Lucu juga... begitu takut rahasianya terbongkar, tapi membuangnya sembarangan."
-    },
+  {
+    x: 3500,
+    y: 0,
+    type: "bench",
+    name: "Bangku Jalan",
+    text: "Jamur dan tumbuhan mulai memenuhi bangku ini. Sudah lama tidak ada yang duduk di sini. Mungkin bangku ini bukan tidak nyaman, hanya saja tidak pernah ada yang datang.",
+  },
 
-    {
-        x: 3500,
-        y: 0,
-        type: "bench",
-        name: "Bangku Jalan",
-        text: "Jamur dan tumbuhan mulai memenuhi bangku ini. Sudah lama tidak ada yang duduk di sini. Mungkin bangku ini bukan tidak nyaman, hanya saja tidak pernah ada yang datang."
-    },
+  {
+    x: 3780,
+    y: 0,
+    type: "vending",
+    name: "Mesin Penjual Otomatis",
+    text: "Mesin ini masih berfungsi sepenuhnya. Sayangnya, harganya dibuat seolah-olah yang dijual bukan mesinnya, melainkan hak untuk hidup.",
+  },
 
-    {
-        x: 3780,
-        y: 0,
-        type: "vending",
-        name: "Mesin Penjual Otomatis",
-        text: "Mesin ini masih berfungsi sepenuhnya. Sayangnya, harganya dibuat seolah-olah yang dijual bukan mesinnya, melainkan hak untuk hidup."
-    },
+  {
+    x: 3990,
+    y: 0,
+    type: "hydrant",
+    name: "Hidran Kebakaran",
+    text: "Hidran merah tua. Tekanan airnya masih normal, tetapi mekanismenya telah dirusak dengan sengaja. Seseorang tampaknya memastikan hidran ini tidak bisa digunakan.",
+  },
 
-    {
-        x: 3990,
-        y: 0,
-        type: "hydrant",
-        name: "Hidran Kebakaran",
-        text: "Hidran merah tua. Tekanan airnya masih normal, tetapi mekanismenya telah dirusak dengan sengaja. Seseorang tampaknya memastikan hidran ini tidak bisa digunakan."
-    },
-
-    {
-        x: 4180,
-        y: 0,
-        type: "door",
-        name: "Pintu Keluar",
-        text: "Sebuah pintu tua berdiri di ujung jalan. Sepertinya ini adalah jalan keluar. Tekan E untuk kembali ke halaman utama."
-    }
-
+  {
+    x: 4180,
+    y: 0,
+    type: "door",
+    name: "Pintu Keluar",
+    text: "Sebuah pintu tua berdiri di ujung jalan. Sepertinya ini adalah jalan keluar. Tekan E untuk kembali ke halaman utama.",
+  },
 ];
-
 
 /* =========================================
    RAIN
 ========================================= */
 
-const rain = Array.from(
-    { length: 240 },
-    () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        l: 8 + Math.random() * 18,
-        s: 8 + Math.random() * 13
-    })
-);
-
+const rain = Array.from({ length: 240 }, () => ({
+  x: Math.random() * W,
+  y: Math.random() * H,
+  l: 8 + Math.random() * 18,
+  s: 8 + Math.random() * 13,
+}));
 
 /* =========================================
    BUILDINGS
@@ -328,34 +290,25 @@ const rain = Array.from(
 const buildings = [];
 
 for (let i = 0; i < 55; i++) {
+  buildings.push({
+    x: i * 85 + Math.random() * 40,
 
-    buildings.push({
+    w: 65 + Math.random() * 100,
 
-        x: i * 85 + Math.random() * 40,
-
-        w: 65 + Math.random() * 100,
-
-        h: 180 + Math.random() * 390
-
-    });
-
+    h: 180 + Math.random() * 390,
+  });
 }
-
 
 /* =========================================
    PARTICLES
 ========================================= */
 
-const particles = Array.from(
-    { length: 80 },
-    () => ({
-        x: Math.random() * 4300,
-        y: 40 + Math.random() * 500,
-        r: 1 + Math.random() * 2,
-        a: Math.random()
-    })
-);
-
+const particles = Array.from({ length: 80 }, () => ({
+  x: Math.random() * 4300,
+  y: 40 + Math.random() * 500,
+  r: 1 + Math.random() * 2,
+  a: Math.random(),
+}));
 
 /* =========================================
    DOM
@@ -367,2073 +320,1084 @@ const dialogText = dialog.querySelector(".text");
 const prompt = document.getElementById("prompt");
 const fade = document.getElementById("fade");
 
-
 /* =========================================
    UTIL
 ========================================= */
 
 function rect(x, y, w, h, fill) {
+  ctx.fillStyle = fill;
 
-    ctx.fillStyle = fill;
-
-    ctx.fillRect(
-        x,
-        y,
-        w,
-        h
-    );
-
+  ctx.fillRect(x, y, w, h);
 }
-
 
 function worldY(y) {
-
-    return H - 90 - y;
-
+  return H - 90 - y;
 }
-
 
 /* =========================================
    SKY
 ========================================= */
 
 function drawSky() {
+  const g = ctx.createLinearGradient(0, 0, 0, H);
 
-    const g = ctx.createLinearGradient(
-        0,
-        0,
-        0,
-        H
-    );
+  g.addColorStop(0, "#070914");
 
-    g.addColorStop(
-        0,
-        "#070914"
-    );
+  g.addColorStop(0.55, "#12152b");
 
-    g.addColorStop(
-        0.55,
-        "#12152b"
-    );
+  g.addColorStop(1, "#080a12");
 
-    g.addColorStop(
-        1,
-        "#080a12"
-    );
+  ctx.fillStyle = g;
 
-    ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
 
-    ctx.fillRect(
-        0,
-        0,
-        W,
-        H
-    );
+  ctx.globalAlpha = 0.25;
 
+  ctx.fillStyle = "#8e9cff";
 
-    ctx.globalAlpha = 0.25;
+  ctx.beginPath();
 
-    ctx.fillStyle = "#8e9cff";
+  ctx.arc(W * 0.72, H * 0.2, 65, 0, Math.PI * 2);
 
-    ctx.beginPath();
+  ctx.fill();
 
-    ctx.arc(
-        W * 0.72,
-        H * 0.2,
-        65,
-        0,
-        Math.PI * 2
-    );
-
-    ctx.fill();
-
-    ctx.globalAlpha = 1;
-
+  ctx.globalAlpha = 1;
 }
-
 
 /* =========================================
    CITY
 ========================================= */
 
 function drawCity() {
+  for (const b of buildings) {
+    const x = b.x - camX * 0.18;
 
-    for (const b of buildings) {
-
-        const x = b.x - camX * 0.18;
-
-        if (x + b.w < 0 || x > W) {
-            continue;
-        }
-
-        const y = worldY(b.h - 20);
-
-
-        rect(
-            x,
-            y,
-            b.w,
-            b.h,
-            "#080c16"
-        );
-
-        rect(
-            x + 6,
-            y + 6,
-            b.w - 12,
-            b.h - 12,
-            "#101626"
-        );
-
-        rect(
-            x,
-            y,
-            b.w,
-            5,
-            "#27344a"
-        );
-
-
-        for (
-            let yy = y + 22;
-            yy < y + b.h - 15;
-            yy += 30
-        ) {
-
-            for (
-                let xx = x + 12;
-                xx < x + b.w - 10;
-                xx += 25
-            ) {
-
-                if (((xx * 13 + yy * 7) | 0) % 5 === 0) {
-
-                    rect(
-                        xx,
-                        yy,
-                        7,
-                        10,
-                        "#263b52"
-                    );
-
-                }
-                else if (((xx + yy) | 0) % 11 === 0) {
-
-                    rect(
-                        xx,
-                        yy,
-                        7,
-                        10,
-                        "#815b3e"
-                    );
-
-                }
-
-            }
-
-        }
-
-
-        rect(
-            x + b.w - 12,
-            y + 30,
-            5,
-            b.h - 30,
-            "#253047"
-        );
-
+    if (x + b.w < 0 || x > W) {
+      continue;
     }
 
+    const y = worldY(b.h - 20);
 
-    /* LEFT WALL */
+    rect(x, y, b.w, b.h, "#080c16");
 
-    ctx.fillStyle = "#05070d";
+    rect(x + 6, y + 6, b.w - 12, b.h - 12, "#101626");
 
-    ctx.beginPath();
+    rect(x, y, b.w, 5, "#27344a");
 
-    ctx.moveTo(
-        0,
-        H - 135
-    );
-
-    ctx.lineTo(
-        170,
-        H - 220
-    );
-
-    ctx.lineTo(
-        170,
-        H
-    );
-
-    ctx.lineTo(
-        0,
-        H
-    );
-
-    ctx.fill();
-
-
-    /* RIGHT WALL */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        W,
-        H - 135
-    );
-
-    ctx.lineTo(
-        W - 170,
-        H - 220
-    );
-
-    ctx.lineTo(
-        W - 170,
-        H
-    );
-
-    ctx.lineTo(
-        W,
-        H
-    );
-
-    ctx.fill();
-
-
-    /* ROAD */
-
-    const road = ctx.createLinearGradient(
-        0,
-        H - 100,
-        0,
-        H
-    );
-
-    road.addColorStop(
-        0,
-        "#121827"
-    );
-
-    road.addColorStop(
-        1,
-        "#05070c"
-    );
-
-    ctx.fillStyle = road;
-
-    ctx.fillRect(
-        0,
-        H - 100,
-        W,
-        100
-    );
-
-
-    ctx.globalAlpha = 0.18;
-
-    ctx.strokeStyle = "#4b607d";
-
-    for (
-        let x = -100;
-        x < W + 100;
-        x += 90
-    ) {
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            x,
-            H
-        );
-
-        ctx.lineTo(
-            W / 2 + (x - W / 2) * 0.2,
-            H - 100
-        );
-
-        ctx.stroke();
-
+    for (let yy = y + 22; yy < y + b.h - 15; yy += 30) {
+      for (let xx = x + 12; xx < x + b.w - 10; xx += 25) {
+        if (((xx * 13 + yy * 7) | 0) % 5 === 0) {
+          rect(xx, yy, 7, 10, "#263b52");
+        } else if (((xx + yy) | 0) % 11 === 0) {
+          rect(xx, yy, 7, 10, "#815b3e");
+        }
+      }
     }
 
-    ctx.globalAlpha = 1;
+    rect(x + b.w - 12, y + 30, 5, b.h - 30, "#253047");
+  }
 
+  /* LEFT WALL */
+
+  ctx.fillStyle = "#05070d";
+
+  ctx.beginPath();
+
+  ctx.moveTo(0, H - 135);
+
+  ctx.lineTo(170, H - 220);
+
+  ctx.lineTo(170, H);
+
+  ctx.lineTo(0, H);
+
+  ctx.fill();
+
+  /* RIGHT WALL */
+
+  ctx.beginPath();
+
+  ctx.moveTo(W, H - 135);
+
+  ctx.lineTo(W - 170, H - 220);
+
+  ctx.lineTo(W - 170, H);
+
+  ctx.lineTo(W, H);
+
+  ctx.fill();
+
+  /* ROAD */
+
+  const road = ctx.createLinearGradient(0, H - 100, 0, H);
+
+  road.addColorStop(0, "#121827");
+
+  road.addColorStop(1, "#05070c");
+
+  ctx.fillStyle = road;
+
+  ctx.fillRect(0, H - 100, W, 100);
+
+  ctx.globalAlpha = 0.18;
+
+  ctx.strokeStyle = "#4b607d";
+
+  for (let x = -100; x < W + 100; x += 90) {
+    ctx.beginPath();
+
+    ctx.moveTo(x, H);
+
+    ctx.lineTo(W / 2 + (x - W / 2) * 0.2, H - 100);
+
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 1;
 }
-
 
 /* =========================================
    PLATFORM
 ========================================= */
 
 function drawPlatforms() {
+  for (const p of platforms) {
+    const x = p.x - camX;
+    const y = worldY(p.y);
 
-    for (const p of platforms) {
-
-        const x = p.x - camX;
-        const y = worldY(p.y);
-
-        if (x + p.w < 0 || x > W) {
-            continue;
-        }
-
-
-        rect(
-            x,
-            y,
-            p.w,
-            p.h,
-            "#171c2a"
-        );
-
-        rect(
-            x,
-            y,
-            p.w,
-            4,
-            "#334257"
-        );
-
-
-        for (
-            let i = 0;
-            i < p.w;
-            i += 38
-        ) {
-
-            rect(
-                x + i,
-                y + 9,
-                20,
-                3,
-                "#263144"
-            );
-
-        }
-
-
-        rect(
-            x,
-            y + 32,
-            p.w,
-            8,
-            "#0b0e16"
-        );
-
+    if (x + p.w < 0 || x > W) {
+      continue;
     }
 
-}
+    rect(x, y, p.w, p.h, "#171c2a");
 
+    rect(x, y, p.w, 4, "#334257");
+
+    for (let i = 0; i < p.w; i += 38) {
+      rect(x + i, y + 9, 20, 3, "#263144");
+    }
+
+    rect(x, y + 32, p.w, 8, "#0b0e16");
+  }
+}
 
 /* =========================================
    NEON SIGNS
 ========================================= */
 
 function drawNeon() {
+  ctx.save();
 
-    ctx.save();
+  ctx.font = "bold 24px system-ui";
 
-    ctx.font = "bold 24px system-ui";
+  for (const s of signs) {
+    const x = s.x - camX;
+    const y = worldY(s.y);
 
-    for (const s of signs) {
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = s.color;
+    ctx.fillStyle = s.color;
 
-        const x = s.x - camX;
-        const y = worldY(s.y);
+    ctx.fillText(s.text, x, y);
+  }
 
-        ctx.shadowBlur = 18;
-        ctx.shadowColor = s.color;
-        ctx.fillStyle = s.color;
-
-        ctx.fillText(
-            s.text,
-            x,
-            y
-        );
-
-    }
-
-    ctx.restore();
-
+  ctx.restore();
 }
-
 
 /* =========================================
    OBJECTS
 ========================================= */
 
 function drawObject(o) {
+  const x = o.x - camX;
+  const y = worldY(o.y);
 
-    const x = o.x - camX;
-    const y = worldY(o.y);
+  if (x < -100 || x > W + 100) {
+    return;
+  }
 
-    if (x < -100 || x > W + 100) {
-        return;
-    }
+  ctx.save();
 
-    ctx.save();
+  /* CARD BOARD */
 
+  if (o.type === "cardboard") {
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#c78952";
 
-    /* CARD BOARD */
+    rect(x - 28, y - 35, 56, 35, "#9a633b");
 
-    if (o.type === "cardboard") {
+    rect(x - 28, y - 35, 56, 5, "#c18450");
 
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#c78952";
+    ctx.strokeStyle = "#5e3926";
 
-        rect(
-            x - 28,
-            y - 35,
-            56,
-            35,
-            "#9a633b"
-        );
+    ctx.strokeRect(x - 28, y - 35, 56, 35);
 
-        rect(
-            x - 28,
-            y - 35,
-            56,
-            5,
-            "#c18450"
-        );
+    ctx.beginPath();
 
-        ctx.strokeStyle = "#5e3926";
+    ctx.moveTo(x - 28, y - 20);
 
-        ctx.strokeRect(
-            x - 28,
-            y - 35,
-            56,
-            35
-        );
+    ctx.lineTo(x, y - 28);
 
-        ctx.beginPath();
+    ctx.lineTo(x + 28, y - 20);
 
-        ctx.moveTo(
-            x - 28,
-            y - 20
-        );
-
-        ctx.lineTo(
-            x,
-            y - 28
-        );
-
-        ctx.lineTo(
-            x + 28,
-            y - 20
-        );
-
-        ctx.stroke();
-
-    }
-
-
+    ctx.stroke();
+  } else if (o.type === "trash") {
     /* TRASH */
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "#53d6ff";
 
-    else if (o.type === "trash") {
+    rect(x - 18, y - 48, 36, 48, "#303948");
 
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#53d6ff";
+    rect(x - 22, y - 51, 44, 7, "#596579");
 
-        rect(
-            x - 18,
-            y - 48,
-            36,
-            48,
-            "#303948"
-        );
+    ctx.fillStyle = "#151b26";
 
-        rect(
-            x - 22,
-            y - 51,
-            44,
-            7,
-            "#596579"
-        );
-
-        ctx.fillStyle = "#151b26";
-
-        ctx.fillRect(
-            x - 10,
-            y - 41,
-            20,
-            5
-        );
-
-    }
-
-
+    ctx.fillRect(x - 10, y - 41, 20, 5);
+  } else if (o.type === "billboard") {
     /* BILLBOARD */
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#38e8ff";
 
-    else if (o.type === "billboard") {
+    rect(x - 42, y - 76, 84, 55, "#202b3b");
 
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = "#38e8ff";
+    rect(x - 38, y - 71, 76, 42, "#111a28");
 
-        rect(
-            x - 42,
-            y - 76,
-            84,
-            55,
-            "#202b3b"
-        );
+    ctx.strokeStyle = "#53677e";
+    ctx.lineWidth = 2;
 
-        rect(
-            x - 38,
-            y - 71,
-            76,
-            42,
-            "#111a28"
-        );
+    ctx.strokeRect(x - 42, y - 76, 84, 55);
 
-        ctx.strokeStyle = "#53677e";
-        ctx.lineWidth = 2;
+    ctx.fillStyle = "#5fe9ff";
 
-        ctx.strokeRect(
-            x - 42,
-            y - 76,
-            84,
-            55
-        );
+    ctx.fillRect(x - 29, y - 61, 58, 4);
 
-        ctx.fillStyle = "#5fe9ff";
+    ctx.fillStyle = "#d8e7f7";
 
-        ctx.fillRect(
-            x - 29,
-            y - 61,
-            58,
-            4
-        );
+    ctx.fillRect(x - 29, y - 50, 44, 3);
 
-        ctx.fillStyle = "#d8e7f7";
+    ctx.fillRect(x - 29, y - 43, 52, 3);
 
-        ctx.fillRect(
-            x - 29,
-            y - 50,
-            44,
-            3
-        );
+    ctx.fillStyle = "#3e4d62";
 
-        ctx.fillRect(
-            x - 29,
-            y - 43,
-            52,
-            3
-        );
-
-        ctx.fillStyle = "#3e4d62";
-
-        ctx.fillRect(
-            x - 4,
-            y - 21,
-            8,
-            21
-        );
-
-    }
-
-
+    ctx.fillRect(x - 4, y - 21, 8, 21);
+  } else if (o.type === "box") {
     /* BOX */
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#9b82ff";
 
-    else if (o.type === "box") {
+    rect(x - 25, y - 38, 50, 38, "#515a6b");
 
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#9b82ff";
+    rect(x - 25, y - 38, 50, 5, "#79849a");
 
-        rect(
-            x - 25,
-            y - 38,
-            50,
-            38,
-            "#515a6b"
-        );
+    ctx.strokeStyle = "#252b38";
 
-        rect(
-            x - 25,
-            y - 38,
-            50,
-            5,
-            "#79849a"
-        );
+    ctx.strokeRect(x - 25, y - 38, 50, 38);
 
-        ctx.strokeStyle = "#252b38";
+    ctx.fillStyle = "#313a4c";
 
-        ctx.strokeRect(
-            x - 25,
-            y - 38,
-            50,
-            38
-        );
-
-        ctx.fillStyle = "#313a4c";
-
-        ctx.fillRect(
-            x - 4,
-            y - 38,
-            8,
-            38
-        );
-
-    }
-
-
+    ctx.fillRect(x - 4, y - 38, 8, 38);
+  } else if (o.type === "bicycle") {
     /* BICYCLE */
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#69d7ff";
 
-    else if (o.type === "bicycle") {
+    ctx.strokeStyle = "#91a8bd";
+    ctx.lineWidth = 3;
 
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#69d7ff";
+    ctx.beginPath();
 
-        ctx.strokeStyle = "#91a8bd";
-        ctx.lineWidth = 3;
+    ctx.arc(x - 20, y - 15, 15, 0, Math.PI * 2);
 
-        ctx.beginPath();
+    ctx.arc(x + 20, y - 15, 15, 0, Math.PI * 2);
 
-        ctx.arc(
-            x - 20,
-            y - 15,
-            15,
-            0,
-            Math.PI * 2
-        );
+    ctx.stroke();
 
-        ctx.arc(
-            x + 20,
-            y - 15,
-            15,
-            0,
-            Math.PI * 2
-        );
+    ctx.beginPath();
 
-        ctx.stroke();
+    ctx.moveTo(x - 20, y - 15);
 
+    ctx.lineTo(x - 3, y - 36);
 
-        ctx.beginPath();
+    ctx.lineTo(x + 8, y - 15);
 
-        ctx.moveTo(
-            x - 20,
-            y - 15
-        );
+    ctx.lineTo(x - 20, y - 15);
 
-        ctx.lineTo(
-            x - 3,
-            y - 36
-        );
+    ctx.moveTo(x - 3, y - 36);
 
-        ctx.lineTo(
-            x + 8,
-            y - 15
-        );
+    ctx.lineTo(x + 20, y - 15);
 
-        ctx.lineTo(
-            x - 20,
-            y - 15
-        );
+    ctx.moveTo(x - 3, y - 36);
 
-        ctx.moveTo(
-            x - 3,
-            y - 36
-        );
+    ctx.lineTo(x + 2, y - 42);
 
-        ctx.lineTo(
-            x + 20,
-            y - 15
-        );
+    ctx.moveTo(x + 8, y - 15);
 
-        ctx.moveTo(
-            x - 3,
-            y - 36
-        );
+    ctx.lineTo(x + 16, y - 31);
 
-        ctx.lineTo(
-            x + 2,
-            y - 42
-        );
-
-        ctx.moveTo(
-            x + 8,
-            y - 15
-        );
-
-        ctx.lineTo(
-            x + 16,
-            y - 31
-        );
-
-        ctx.stroke();
-
-    }
-
-
+    ctx.stroke();
+  } else if (o.type === "car") {
     /* CAR */
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = "#ff4c9a";
 
-    else if (o.type === "car") {
+    rect(x - 58, y - 32, 116, 25, "#29384a");
 
-        ctx.shadowBlur = 14;
-        ctx.shadowColor = "#ff4c9a";
+    rect(x - 43, y - 49, 70, 20, "#1a2635");
 
-        rect(
-            x - 58,
-            y - 32,
-            116,
-            25,
-            "#29384a"
-        );
+    ctx.fillStyle = "#0b111b";
 
-        rect(
-            x - 43,
-            y - 49,
-            70,
-            20,
-            "#1a2635"
-        );
+    ctx.fillRect(x - 35, y - 44, 24, 12);
 
-        ctx.fillStyle = "#0b111b";
+    ctx.fillRect(x + 5, y - 44, 24, 12);
 
-        ctx.fillRect(
-            x - 35,
-            y - 44,
-            24,
-            12
-        );
+    ctx.fillStyle = "#ff405f";
 
-        ctx.fillRect(
-            x + 5,
-            y - 44,
-            24,
-            12
-        );
+    ctx.fillRect(x - 48, y - 35, 8, 5);
 
-        ctx.fillStyle = "#ff405f";
+    ctx.fillRect(x + 40, y - 35, 8, 5);
 
-        ctx.fillRect(
-            x - 48,
-            y - 35,
-            8,
-            5
-        );
+    ctx.fillStyle = "#0c1018";
 
-        ctx.fillRect(
-            x + 40,
-            y - 35,
-            8,
-            5
-        );
+    ctx.beginPath();
 
-        ctx.fillStyle = "#0c1018";
+    ctx.arc(x - 37, y - 5, 10, 0, Math.PI * 2);
 
-        ctx.beginPath();
+    ctx.arc(x + 37, y - 5, 10, 0, Math.PI * 2);
 
-        ctx.arc(
-            x - 37,
-            y - 5,
-            10,
-            0,
-            Math.PI * 2
-        );
+    ctx.fill();
 
-        ctx.arc(
-            x + 37,
-            y - 5,
-            10,
-            0,
-            Math.PI * 2
-        );
+    ctx.fillStyle = "#8e9fb4";
 
-        ctx.fill();
+    ctx.beginPath();
 
-        ctx.fillStyle = "#8e9fb4";
+    ctx.moveTo(x - 10, y - 49);
 
-        ctx.beginPath();
+    ctx.lineTo(x + 2, y - 49);
 
-        ctx.moveTo(
-            x - 10,
-            y - 49
-        );
+    ctx.lineTo(x + 10, y - 58);
 
-        ctx.lineTo(
-            x + 2,
-            y - 49
-        );
+    ctx.lineTo(x - 18, y - 58);
 
-        ctx.lineTo(
-            x + 10,
-            y - 58
-        );
+    ctx.closePath();
 
-        ctx.lineTo(
-            x - 18,
-            y - 58
-        );
-
-        ctx.closePath();
-
-        ctx.fill();
-
-    }
-
-
+    ctx.fill();
+  } else if (o.type === "bench") {
     /* BENCH */
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "#c68b55";
 
-    else if (o.type === "bench") {
+    rect(x - 42, y - 38, 84, 7, "#9b673f");
 
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#c68b55";
+    rect(x - 42, y - 26, 84, 6, "#7e5235");
 
-        rect(
-            x - 42,
-            y - 38,
-            84,
-            7,
-            "#9b673f"
-        );
+    rect(x - 34, y - 20, 6, 20, "#4b5563");
 
-        rect(
-            x - 42,
-            y - 26,
-            84,
-            6,
-            "#7e5235"
-        );
-
-        rect(
-            x - 34,
-            y - 20,
-            6,
-            20,
-            "#4b5563"
-        );
-
-        rect(
-            x + 28,
-            y - 20,
-            6,
-            20,
-            "#4b5563"
-        );
-
-    }
-
-
+    rect(x + 28, y - 20, 6, 20, "#4b5563");
+  } else if (o.type === "vending") {
     /* VENDING */
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#55ff9a";
 
-    else if (o.type === "vending") {
+    rect(x - 25, y - 72, 50, 72, "#263447");
 
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = "#55ff9a";
+    rect(x - 20, y - 66, 40, 38, "#0b1720");
 
-        rect(
-            x - 25,
-            y - 72,
-            50,
-            72,
-            "#263447"
-        );
+    ctx.fillStyle = "#55ff9a";
 
-        rect(
-            x - 20,
-            y - 66,
-            40,
-            38,
-            "#0b1720"
-        );
+    ctx.fillRect(x - 15, y - 58, 30, 4);
 
-        ctx.fillStyle = "#55ff9a";
+    ctx.fillStyle = "#8fa4b8";
 
-        ctx.fillRect(
-            x - 15,
-            y - 58,
-            30,
-            4
-        );
+    ctx.fillRect(x - 15, y - 47, 25, 3);
 
-        ctx.fillStyle = "#8fa4b8";
+    ctx.fillRect(x - 15, y - 39, 18, 3);
 
-        ctx.fillRect(
-            x - 15,
-            y - 47,
-            25,
-            3
-        );
+    ctx.fillStyle = "#f3cf5b";
 
-        ctx.fillRect(
-            x - 15,
-            y - 39,
-            18,
-            3
-        );
+    ctx.fillRect(x - 13, y - 18, 8, 8);
 
-        ctx.fillStyle = "#f3cf5b";
-
-        ctx.fillRect(
-            x - 13,
-            y - 18,
-            8,
-            8
-        );
-
-        ctx.fillRect(
-            x,
-            y - 18,
-            8,
-            8
-        );
-
-    }
-
-
+    ctx.fillRect(x, y - 18, 8, 8);
+  } else if (o.type === "hydrant") {
     /* HYDRANT */
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#ff4c5d";
 
-    else if (o.type === "hydrant") {
+    rect(x - 11, y - 43, 22, 43, "#9b3344");
 
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#ff4c5d";
+    rect(x - 18, y - 39, 36, 8, "#b53d50");
 
-        rect(
-            x - 11,
-            y - 43,
-            22,
-            43,
-            "#9b3344"
-        );
+    ctx.fillStyle = "#d85b65";
 
-        rect(
-            x - 18,
-            y - 39,
-            36,
-            8,
-            "#b53d50"
-        );
+    ctx.fillRect(x - 16, y - 54, 32, 12);
 
-        ctx.fillStyle = "#d85b65";
+    ctx.fillStyle = "#6d2432";
 
-        ctx.fillRect(
-            x - 16,
-            y - 54,
-            32,
-            12
-        );
+    ctx.fillRect(x - 28, y - 30, 17, 9);
 
-        ctx.fillStyle = "#6d2432";
-
-        ctx.fillRect(
-            x - 28,
-            y - 30,
-            17,
-            9
-        );
-
-        ctx.fillRect(
-            x + 11,
-            y - 30,
-            17,
-            9
-        );
-
-    }
-
-
+    ctx.fillRect(x + 11, y - 30, 17, 9);
+  } else if (o.type === "door") {
     /* EXIT DOOR */
+    ctx.shadowBlur = 25;
+    ctx.shadowColor = "#38e8ff";
 
-    else if (o.type === "door") {
+    ctx.fillStyle = "#38e8ff18";
 
-        ctx.shadowBlur = 25;
-        ctx.shadowColor = "#38e8ff";
+    ctx.fillRect(x - 48, y - 120, 96, 120);
 
-        ctx.fillStyle = "#38e8ff18";
+    /* OUTER FRAME */
 
-        ctx.fillRect(
-            x - 48,
-            y - 120,
-            96,
-            120
-        );
+    rect(x - 35, y - 110, 70, 110, "#263b52");
 
+    /* DOOR */
 
-        /* OUTER FRAME */
+    rect(x - 29, y - 104, 58, 104, "#0b1421");
 
-        rect(
-            x - 35,
-            y - 110,
-            70,
-            110,
-            "#263b52"
-        );
+    /* NEON FRAME */
 
+    ctx.strokeStyle = "#4fdfff";
+    ctx.lineWidth = 3;
 
-        /* DOOR */
+    ctx.strokeRect(x - 35, y - 110, 70, 110);
 
-        rect(
-            x - 29,
-            y - 104,
-            58,
-            104,
-            "#0b1421"
-        );
+    /* DOOR PANEL */
 
+    ctx.strokeStyle = "#24576a";
+    ctx.lineWidth = 2;
 
-        /* NEON FRAME */
+    ctx.strokeRect(x - 20, y - 82, 40, 55);
 
-        ctx.strokeStyle = "#4fdfff";
-        ctx.lineWidth = 3;
+    /* NEON LINES */
 
-        ctx.strokeRect(
-            x - 35,
-            y - 110,
-            70,
-            110
-        );
+    ctx.fillStyle = "#38e8ff";
 
+    ctx.fillRect(x - 24, y - 96, 48, 3);
 
-        /* DOOR PANEL */
+    ctx.fillRect(x - 24, y - 15, 48, 3);
 
-        ctx.strokeStyle = "#24576a";
-        ctx.lineWidth = 2;
+    /* EXIT */
 
-        ctx.strokeRect(
-            x - 20,
-            y - 82,
-            40,
-            55
-        );
+    ctx.font = "bold 12px system-ui";
+    ctx.textAlign = "center";
 
+    ctx.fillStyle = "#55ff9a";
+    ctx.shadowBlur = 15;
 
-        /* NEON LINES */
+    ctx.fillText("EXIT", x, y - 55);
 
-        ctx.fillStyle = "#38e8ff";
+    /* HANDLE */
 
-        ctx.fillRect(
-            x - 24,
-            y - 96,
-            48,
-            3
-        );
+    ctx.fillStyle = "#ffe35a";
+    ctx.shadowBlur = 8;
 
-        ctx.fillRect(
-            x - 24,
-            y - 15,
-            48,
-            3
-        );
+    ctx.beginPath();
 
+    ctx.arc(x + 18, y - 45, 4, 0, Math.PI * 2);
 
-        /* EXIT */
+    ctx.fill();
 
-        ctx.font = "bold 12px system-ui";
-        ctx.textAlign = "center";
+    ctx.textAlign = "left";
+  }
 
-        ctx.fillStyle = "#55ff9a";
-        ctx.shadowBlur = 15;
-
-        ctx.fillText(
-            "EXIT",
-            x,
-            y - 55
-        );
-
-
-        /* HANDLE */
-
-        ctx.fillStyle = "#ffe35a";
-        ctx.shadowBlur = 8;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x + 18,
-            y - 45,
-            4,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-        ctx.textAlign = "left";
-
-    }
-
-
-    ctx.restore();
-
+  ctx.restore();
 }
-
 
 /* =========================================
    NPC
 ========================================= */
 
 function drawNPC(n) {
+  const x = n.x - camX;
+  const y = worldY(n.y);
 
-    const x = n.x - camX;
-    const y = worldY(n.y);
+  if (x < -60 || x > W + 60) {
+    return;
+  }
 
-    if (x < -60 || x > W + 60) {
-        return;
-    }
+  ctx.save();
 
-    ctx.save();
+  ctx.shadowBlur = 14;
+  ctx.shadowColor = n.color;
 
-    ctx.shadowBlur = 14;
-    ctx.shadowColor = n.color;
+  /* BODY */
 
+  rect(x - 10, y - 54, 20, 54, n.color);
 
-    /* BODY */
+  /* HEAD */
 
-    rect(
-        x - 10,
-        y - 54,
-        20,
-        54,
-        n.color
-    );
+  ctx.fillStyle = "#111827";
 
+  ctx.beginPath();
 
-    /* HEAD */
+  ctx.arc(x, y - 64, 15, 0, Math.PI * 2);
 
-    ctx.fillStyle = "#111827";
+  ctx.fill();
 
-    ctx.beginPath();
+  /* EYES */
 
-    ctx.arc(
-        x,
-        y - 64,
-        15,
-        0,
-        Math.PI * 2
-    );
+  ctx.fillStyle = n.color;
 
-    ctx.fill();
+  ctx.fillRect(x - 8, y - 68, 4, 3);
 
+  ctx.fillRect(x + 4, y - 68, 4, 3);
 
-    /* EYES */
-
-    ctx.fillStyle = n.color;
-
-    ctx.fillRect(
-        x - 8,
-        y - 68,
-        4,
-        3
-    );
-
-    ctx.fillRect(
-        x + 4,
-        y - 68,
-        4,
-        3
-    );
-
-    ctx.restore();
-
+  ctx.restore();
 }
-
 
 /* =========================================
    CAT
 ========================================= */
 
 function drawCat() {
+  const x = cat.x - camX;
 
-    const x = cat.x - camX;
+  const y = worldY(cat.y + cat.h);
 
-    const y = worldY(
-        cat.y + cat.h
-    );
+  ctx.save();
 
-    ctx.save();
+  ctx.translate(x, y);
 
-    ctx.translate(
-        x,
-        y
-    );
+  ctx.scale(cat.dir, 1);
 
-    ctx.scale(
-        cat.dir,
-        1
-    );
+  const moving = Math.abs(cat.vx) > 0.4 && cat.onGround;
 
+  const bob = moving ? Math.sin(time * 0.025) * 2 : 0;
 
-    const moving =
-        Math.abs(cat.vx) > 0.4 &&
-        cat.onGround;
+  ctx.translate(0, bob);
 
+  ctx.shadowBlur = 18;
+  ctx.shadowColor = "#ff9b42";
 
-    const bob =
-        moving
-            ? Math.sin(time * 0.025) * 2
-            : 0;
+  /* TAIL */
 
+  ctx.strokeStyle = "#d77a38";
+  ctx.lineWidth = 7;
+  ctx.lineCap = "round";
 
-    ctx.translate(
-        0,
-        bob
-    );
+  ctx.beginPath();
 
+  ctx.moveTo(-16, 12);
 
-    ctx.shadowBlur = 18;
-    ctx.shadowColor = "#ff9b42";
+  ctx.quadraticCurveTo(-38, -2, -28, -18);
 
+  ctx.stroke();
 
-    /* TAIL */
+  /* BODY */
 
-    ctx.strokeStyle = "#d77a38";
-    ctx.lineWidth = 7;
-    ctx.lineCap = "round";
+  ctx.fillStyle = "#c87539";
 
-    ctx.beginPath();
+  ctx.beginPath();
 
-    ctx.moveTo(
-        -16,
-        12
-    );
+  ctx.ellipse(0, 0, 23, 15, 0, 0, Math.PI * 2);
 
-    ctx.quadraticCurveTo(
-        -38,
-        -2,
-        -28,
-        -18
-    );
+  ctx.fill();
 
-    ctx.stroke();
+  /* HEAD */
 
+  ctx.fillStyle = "#e18a45";
 
-    /* BODY */
+  ctx.beginPath();
 
-    ctx.fillStyle = "#c87539";
+  ctx.arc(22, -11, 14, 0, Math.PI * 2);
 
-    ctx.beginPath();
+  ctx.fill();
 
-    ctx.ellipse(
-        0,
-        0,
-        23,
-        15,
-        0,
-        0,
-        Math.PI * 2
-    );
+  /* EARS */
 
-    ctx.fill();
+  ctx.beginPath();
 
+  ctx.moveTo(12, -20);
 
-    /* HEAD */
+  ctx.lineTo(14, -35);
 
-    ctx.fillStyle = "#e18a45";
+  ctx.lineTo(22, -23);
 
-    ctx.beginPath();
+  ctx.fill();
 
-    ctx.arc(
-        22,
-        -11,
-        14,
-        0,
-        Math.PI * 2
-    );
+  ctx.beginPath();
 
-    ctx.fill();
+  ctx.moveTo(27, -23);
 
+  ctx.lineTo(35, -35);
 
-    /* EARS */
+  ctx.lineTo(36, -15);
 
-    ctx.beginPath();
+  ctx.fill();
 
-    ctx.moveTo(
-        12,
-        -20
-    );
+  /* EYES */
 
-    ctx.lineTo(
-        14,
-        -35
-    );
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = "#ffe46b";
+  ctx.fillStyle = "#ffe46b";
 
-    ctx.lineTo(
-        22,
-        -23
-    );
+  ctx.fillRect(25, -14, 3, 4);
 
-    ctx.fill();
+  ctx.fillRect(33, -14, 3, 4);
 
+  /* LEGS */
 
-    ctx.beginPath();
+  ctx.shadowBlur = 0;
+  ctx.strokeStyle = "#9f572c";
+  ctx.lineWidth = 5;
 
-    ctx.moveTo(
-        27,
-        -23
-    );
+  const step = moving ? Math.sin(time * 0.025) * 5 : 0;
 
-    ctx.lineTo(
-        35,
-        -35
-    );
+  ctx.beginPath();
 
-    ctx.lineTo(
-        36,
-        -15
-    );
+  ctx.moveTo(-10, 10);
 
-    ctx.fill();
+  ctx.lineTo(-10 - step, 25);
 
+  ctx.moveTo(8, 10);
 
-    /* EYES */
+  ctx.lineTo(8 + step, 25);
 
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = "#ffe46b";
-    ctx.fillStyle = "#ffe46b";
+  ctx.stroke();
 
-    ctx.fillRect(
-        25,
-        -14,
-        3,
-        4
-    );
-
-    ctx.fillRect(
-        33,
-        -14,
-        3,
-        4
-    );
-
-
-    /* LEGS */
-
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = "#9f572c";
-    ctx.lineWidth = 5;
-
-    const step =
-        moving
-            ? Math.sin(time * 0.025) * 5
-            : 0;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        -10,
-        10
-    );
-
-    ctx.lineTo(
-        -10 - step,
-        25
-    );
-
-    ctx.moveTo(
-        8,
-        10
-    );
-
-    ctx.lineTo(
-        8 + step,
-        25
-    );
-
-    ctx.stroke();
-
-    ctx.restore();
-
+  ctx.restore();
 }
-
 
 /* =========================================
    PARTICLES
 ========================================= */
 
 function drawParticles() {
+  ctx.save();
 
-    ctx.save();
+  for (const p of particles) {
+    const x = p.x - camX * 0.7;
+    const y = worldY(p.y);
 
-    for (const p of particles) {
-
-        const x = p.x - camX * 0.7;
-        const y = worldY(p.y);
-
-        if (x < 0 || x > W) {
-            continue;
-        }
-
-        ctx.globalAlpha =
-            0.15 + p.a * 0.25;
-
-        ctx.fillStyle = "#72dfff";
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            p.r,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
+    if (x < 0 || x > W) {
+      continue;
     }
 
-    ctx.restore();
+    ctx.globalAlpha = 0.15 + p.a * 0.25;
 
+    ctx.fillStyle = "#72dfff";
+
+    ctx.beginPath();
+
+    ctx.arc(x, y, p.r, 0, Math.PI * 2);
+
+    ctx.fill();
+  }
+
+  ctx.restore();
 }
-
 
 /* =========================================
    RAIN
 ========================================= */
 
 function drawRain() {
+  ctx.save();
 
-    ctx.save();
+  ctx.strokeStyle = "#83cfff33";
+  ctx.lineWidth = 1;
 
-    ctx.strokeStyle = "#83cfff33";
-    ctx.lineWidth = 1;
+  for (const r of rain) {
+    r.y += r.s;
 
-    for (const r of rain) {
-
-        r.y += r.s;
-
-        if (r.y > H) {
-            r.y = -r.l;
-        }
-
-        r.x -= 0.7;
-
-        if (r.x < 0) {
-            r.x = W;
-        }
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            r.x,
-            r.y
-        );
-
-        ctx.lineTo(
-            r.x - 5,
-            r.y + r.l
-        );
-
-        ctx.stroke();
-
+    if (r.y > H) {
+      r.y = -r.l;
     }
 
-    ctx.restore();
+    r.x -= 0.7;
 
+    if (r.x < 0) {
+      r.x = W;
+    }
+
+    ctx.beginPath();
+
+    ctx.moveTo(r.x, r.y);
+
+    ctx.lineTo(r.x - 5, r.y + r.l);
+
+    ctx.stroke();
+  }
+
+  ctx.restore();
 }
-
 
 /* =========================================
    COLLISION
 ========================================= */
 
 function collision() {
+  cat.onGround = false;
 
-    cat.onGround = false;
+  for (const p of platforms) {
+    const horizontal = cat.x + cat.w / 2 > p.x && cat.x - cat.w / 2 < p.x + p.w;
 
-    for (const p of platforms) {
-
-        const horizontal =
-            cat.x + cat.w / 2 > p.x &&
-            cat.x - cat.w / 2 < p.x + p.w;
-
-        if (!horizontal) {
-            continue;
-        }
-
-        const bottom = cat.y;
-
-        if (
-            cat.vy <= 0 &&
-            bottom >= p.y - 8 &&
-            bottom <= p.y + 18
-        ) {
-
-            cat.y = p.y;
-            cat.vy = 0;
-            cat.onGround = true;
-
-        }
-
+    if (!horizontal) {
+      continue;
     }
 
-}
+    const bottom = cat.y;
 
+    if (cat.vy <= 0 && bottom >= p.y - 8 && bottom <= p.y + 18) {
+      cat.y = p.y;
+      cat.vy = 0;
+      cat.onGround = true;
+    }
+  }
+}
 
 /* =========================================
    NEAREST INTERACTION
 ========================================= */
 
 function nearestInteractive() {
+  let best = null;
+  let dist = Infinity;
 
-    let best = null;
-    let dist = Infinity;
+  for (const n of npcs) {
+    const d = Math.abs(cat.x - n.x);
 
-
-    for (const n of npcs) {
-
-        const d = Math.abs(
-            cat.x - n.x
-        );
-
-        if (
-            d < dist &&
-            d < 90
-        ) {
-
-            best = n;
-            dist = d;
-
-        }
-
+    if (d < dist && d < 90) {
+      best = n;
+      dist = d;
     }
+  }
 
+  for (const o of objects) {
+    const d = Math.abs(cat.x - o.x);
 
-    for (const o of objects) {
-
-        const d = Math.abs(
-            cat.x - o.x
-        );
-
-        if (
-            d < dist &&
-            d < 90
-        ) {
-
-            best = o;
-            dist = d;
-
-        }
-
+    if (d < dist && d < 90) {
+      best = o;
+      dist = d;
     }
+  }
 
-
-    return best;
-
+  return best;
 }
-
 
 /* =========================================
    INTERACTION
 ========================================= */
 
 function interact() {
+  if (leaving) {
+    return;
+  }
 
-    if (leaving) {
-        return;
-    }
+  const n = nearestInteractive();
 
-    const n = nearestInteractive();
+  if (!n) {
+    return;
+  }
 
-    if (!n) {
-        return;
-    }
+  dialog.style.display = "block";
 
+  dialogName.textContent = n.name;
+  dialogText.textContent = n.text;
 
-    dialog.style.display = "block";
-
-    dialogName.textContent = n.name;
-    dialogText.textContent = n.text;
-
-
-    /* =====================================
+  /* =====================================
        EXIT
     ===================================== */
 
-    if (n.type === "door") {
+  if (n.type === "door") {
+    leaving = true;
 
-        leaving = true;
+    dialogText.textContent = "Pintu terbuka... kembali ke halaman utama.";
 
-        dialogText.textContent =
-            "Pintu terbuka... kembali ke halaman utama.";
+    prompt.style.opacity = "0";
 
-        prompt.style.opacity = "0";
+    setTimeout(() => {
+      fade.style.opacity = "1";
 
+      setTimeout(() => {
+        window.location.href = "./home.html";
+      }, 1000);
+    }, 1000);
 
-        setTimeout(() => {
+    return;
+  }
 
-            fade.style.opacity = "1";
-
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "./home.html";
-
-            }, 1000);
-
-        }, 1000);
-
-        return;
-    }
-
-
-    /* =====================================
+  /* =====================================
        NORMAL INTERACTION
     ===================================== */
 
-    setTimeout(() => {
-
-        if (!leaving) {
-            dialog.style.display = "none";
-        }
-
-    }, 4000);
-
+  setTimeout(() => {
+    if (!leaving) {
+      dialog.style.display = "none";
+    }
+  }, 4000);
 }
-
 
 /* =========================================
    UPDATE
 ========================================= */
 
 function update() {
+  if (leaving) {
+    return;
+  }
 
-    if (leaving) {
-        return;
-    }
+  const left = keys.a || keys.arrowleft;
 
+  const right = keys.d || keys.arrowright;
 
-    const left =
-        keys.a ||
-        keys.arrowleft;
+  /* MOVEMENT */
 
-    const right =
-        keys.d ||
-        keys.arrowright;
+  if (left) {
+    cat.vx -= 0.55;
+    cat.dir = -1;
+  }
 
+  if (right) {
+    cat.vx += 0.55;
+    cat.dir = 1;
+  }
 
-    /* MOVEMENT */
+  if (!left && !right) {
+    cat.vx *= 0.78;
+  }
 
-    if (left) {
+  cat.vx = Math.max(-5, Math.min(5, cat.vx));
 
-        cat.vx -= 0.55;
-        cat.dir = -1;
+  /* JUMP */
 
-    }
+  const jumping = keys[" "] || keys.w || keys.arrowup;
 
-    if (right) {
+  if (jumping && cat.onGround && !cat.jump) {
+    cat.vy = 10;
+    cat.onGround = false;
+    cat.jump = true;
+  }
 
-        cat.vx += 0.55;
-        cat.dir = 1;
+  if (!jumping) {
+    cat.jump = false;
+  }
 
-    }
+  /* PHYSICS */
 
+  cat.vy -= 0.48;
 
-    if (!left && !right) {
+  cat.y += cat.vy;
 
-        cat.vx *= 0.78;
+  cat.x += cat.vx;
 
-    }
+  /* WORLD LIMIT */
 
+  cat.x = Math.max(25, Math.min(world.w - 25, cat.x));
 
-    cat.vx = Math.max(
-        -5,
-        Math.min(
-            5,
-            cat.vx
-        )
-    );
+  /* COLLISION */
 
+  collision();
 
-    /* JUMP */
+  /* CAMERA */
 
-    const jumping =
-        keys[" "] ||
-        keys.w ||
-        keys.arrowup;
+  const targetCam = cat.x - W * 0.35;
 
+  camX += (targetCam - camX) * 0.08;
 
-    if (
-        jumping &&
-        cat.onGround &&
-        !cat.jump
-    ) {
+  const maxCam = Math.max(0, world.w - W);
 
-        cat.vy = 10;
-        cat.onGround = false;
-        cat.jump = true;
+  camX = Math.max(0, Math.min(maxCam, camX));
 
-    }
-
-
-    if (!jumping) {
-
-        cat.jump = false;
-
-    }
-
-
-    /* PHYSICS */
-
-    cat.vy -= 0.48;
-
-    cat.y += cat.vy;
-
-    cat.x += cat.vx;
-
-
-    /* WORLD LIMIT */
-
-    cat.x = Math.max(
-        25,
-        Math.min(
-            world.w - 25,
-            cat.x
-        )
-    );
-
-
-    /* COLLISION */
-
-    collision();
-
-
-    /* CAMERA */
-
-    const targetCam =
-        cat.x -
-        W * 0.35;
-
-    camX +=
-        (targetCam - camX) * 0.08;
-
-
-    const maxCam =
-        Math.max(
-            0,
-            world.w - W
-        );
-
-
-    camX = Math.max(
-        0,
-        Math.min(
-            maxCam,
-            camX
-        )
-    );
-
-
-    time++;
-
+  time++;
 }
-
 
 /* =========================================
    RENDER
 ========================================= */
 
 function render() {
+  drawSky();
 
-    drawSky();
+  drawCity();
 
-    drawCity();
+  drawParticles();
 
-    drawParticles();
+  drawPlatforms();
 
-    drawPlatforms();
+  drawNeon();
 
-    drawNeon();
+  objects.forEach(drawObject);
 
-    objects.forEach(drawObject);
+  npcs.forEach(drawNPC);
 
-    npcs.forEach(drawNPC);
+  drawCat();
 
-    drawCat();
+  drawRain();
 
-    drawRain();
+  /* INTERACTION PROMPT */
 
+  const n = nearestInteractive();
 
-    /* INTERACTION PROMPT */
-
-    const n = nearestInteractive();
-
-    if (n && !leaving) {
-
-        if (n.type === "door") {
-
-            prompt.textContent =
-                "[ E ] Buka Pintu Keluar";
-
-        }
-        else {
-
-            prompt.textContent =
-                "[ E ] " + n.name;
-
-        }
-
-        prompt.style.opacity = "1";
-
-    }
-    else {
-
-        prompt.textContent = "";
-        prompt.style.opacity = "0";
-
+  if (n && !leaving) {
+    if (n.type === "door") {
+      prompt.textContent = "[ E ] Buka Pintu Keluar";
+    } else {
+      prompt.textContent = "[ E ] " + n.name;
     }
 
+    prompt.style.opacity = "1";
+  } else {
+    prompt.textContent = "";
+    prompt.style.opacity = "0";
+  }
 }
-
 
 /* =========================================
    GAME LOOP
 ========================================= */
 
 function loop() {
+  update();
 
-    update();
+  render();
 
-    render();
-
-    requestAnimationFrame(loop);
-
+  requestAnimationFrame(loop);
 }
 
 loop();
-
 
 /* =========================================
    MOBILE CONTROL
 ========================================= */
 
 function setKey(key, value) {
-
-    keys[key] = value;
-
+  keys[key] = value;
 }
-
 
 /* =========================================
    HOLD BUTTON
 ========================================= */
 
 function hold(button, key) {
+  if (!button) {
+    return;
+  }
 
-    if (!button) {
-        return;
-    }
+  button.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
 
+    try {
+      button.setPointerCapture(e.pointerId);
+    } catch (_) {}
 
-    button.addEventListener(
-        "pointerdown",
-        e => {
+    setKey(key, true);
+  });
 
-            e.preventDefault();
+  button.addEventListener("pointerup", (e) => {
+    e.preventDefault();
 
-            try {
-                button.setPointerCapture(e.pointerId);
-            }
-            catch (_) {}
+    setKey(key, false);
 
-            setKey(key, true);
+    try {
+      button.releasePointerCapture(e.pointerId);
+    } catch (_) {}
+  });
 
-        }
-    );
+  button.addEventListener("pointercancel", (e) => {
+    e.preventDefault();
 
+    setKey(key, false);
+  });
 
-    button.addEventListener(
-        "pointerup",
-        e => {
-
-            e.preventDefault();
-
-            setKey(key, false);
-
-            try {
-                button.releasePointerCapture(e.pointerId);
-            }
-            catch (_) {}
-
-        }
-    );
-
-
-    button.addEventListener(
-        "pointercancel",
-        e => {
-
-            e.preventDefault();
-
-            setKey(key, false);
-
-        }
-    );
-
-
-    button.addEventListener(
-        "lostpointercapture",
-        () => {
-
-            setKey(key, false);
-
-        }
-    );
-
+  button.addEventListener("lostpointercapture", () => {
+    setKey(key, false);
+  });
 }
-
 
 /* =========================================
    MOBILE ELEMENTS
 ========================================= */
 
-const leftButton =
-    document.getElementById("left");
+const leftButton = document.getElementById("left");
 
-const rightButton =
-    document.getElementById("right");
+const rightButton = document.getElementById("right");
 
-const jumpButton =
-    document.getElementById("jump");
+const jumpButton = document.getElementById("jump");
 
-const interactButton =
-    document.getElementById("interact");
-
+const interactButton = document.getElementById("interact");
 
 /* =========================================
    MOVEMENT
 ========================================= */
 
-hold(
-    leftButton,
-    "a"
-);
+hold(leftButton, "a");
 
-hold(
-    rightButton,
-    "d"
-);
-
+hold(rightButton, "d");
 
 /* =========================================
    MOBILE JUMP
 ========================================= */
 
 if (jumpButton) {
+  jumpButton.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
 
-    jumpButton.addEventListener(
-        "pointerdown",
-        e => {
+    try {
+      jumpButton.setPointerCapture(e.pointerId);
+    } catch (_) {}
 
-            e.preventDefault();
+    keys[" "] = true;
+  });
 
-            try {
-                jumpButton.setPointerCapture(
-                    e.pointerId
-                );
-            }
-            catch (_) {}
+  jumpButton.addEventListener("pointerup", (e) => {
+    e.preventDefault();
 
-            keys[" "] = true;
+    keys[" "] = false;
+  });
 
-        }
-    );
+  jumpButton.addEventListener("pointercancel", () => {
+    keys[" "] = false;
+  });
 
-
-    jumpButton.addEventListener(
-        "pointerup",
-        e => {
-
-            e.preventDefault();
-
-            keys[" "] = false;
-
-        }
-    );
-
-
-    jumpButton.addEventListener(
-        "pointercancel",
-        () => {
-
-            keys[" "] = false;
-
-        }
-    );
-
-
-    jumpButton.addEventListener(
-        "lostpointercapture",
-        () => {
-
-            keys[" "] = false;
-
-        }
-    );
-
+  jumpButton.addEventListener("lostpointercapture", () => {
+    keys[" "] = false;
+  });
 }
-
 
 /* =========================================
    MOBILE INTERACT
 ========================================= */
 
 if (interactButton) {
+  interactButton.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
 
-    interactButton.addEventListener(
-        "pointerdown",
-        e => {
+    try {
+      interactButton.setPointerCapture(e.pointerId);
+    } catch (_) {}
 
-            e.preventDefault();
-
-            try {
-                interactButton.setPointerCapture(
-                    e.pointerId
-                );
-            }
-            catch (_) {}
-
-            interact();
-
-        }
-    );
-
+    interact();
+  });
 }
-
 
 /* =========================================
    RELEASE ALL INPUT
    Saat tab berpindah / layar kehilangan fokus
 ========================================= */
 
-window.addEventListener(
-    "blur",
-    () => {
-
-        keys.a = false;
-        keys.d = false;
-        keys[" "] = false;
-        keys.w = false;
-        keys.arrowleft = false;
-        keys.arrowright = false;
-        keys.arrowup = false;
-        keys.arrowdown = false;
-
-    }
-);
-
+window.addEventListener("blur", () => {
+  keys.a = false;
+  keys.d = false;
+  keys[" "] = false;
+  keys.w = false;
+  keys.arrowleft = false;
+  keys.arrowright = false;
+  keys.arrowup = false;
+  keys.arrowdown = false;
+});
 
 /* =========================================
    VISIBILITY
 ========================================= */
 
-document.addEventListener(
-    "visibilitychange",
-    () => {
-
-        if (document.hidden) {
-
-            keys.a = false;
-            keys.d = false;
-            keys[" "] = false;
-            keys.w = false;
-            keys.arrowleft = false;
-            keys.arrowright = false;
-            keys.arrowup = false;
-            keys.arrowdown = false;
-
-        }
-
-    }
-);
-
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    keys.a = false;
+    keys.d = false;
+    keys[" "] = false;
+    keys.w = false;
+    keys.arrowleft = false;
+    keys.arrowright = false;
+    keys.arrowup = false;
+    keys.arrowdown = false;
+  }
+});

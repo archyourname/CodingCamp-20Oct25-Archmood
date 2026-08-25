@@ -1,27 +1,15 @@
 /* ===================================================== 
    INDEX PAGE 
-===================================================== */ 
+===================================================== */
 
-function openHome() { 
+function openHome() {
+  sessionStorage.setItem("fromComputer", "true");
 
-    sessionStorage.setItem(
-        "fromComputer",
-        "true"
-    );
+  document.querySelector(".computer-scene").classList.add("zoom-out");
 
-    document
-        .querySelector(".computer-scene")
-        .classList.add("zoom-out");
+  document.querySelector(".instruction").classList.add("hide");
 
-    document
-        .querySelector(".instruction")
-        .classList.add("hide");
-
-    setTimeout(() => {
-
-        window.location.href =
-            "./home.html";
-
-    }, 1200);
-
+  setTimeout(() => {
+    window.location.href = "./home.html";
+  }, 1200);
 }

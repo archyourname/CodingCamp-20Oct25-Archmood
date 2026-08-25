@@ -1,135 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Portal PontMedusa</title>
 
-    <link
-        rel="stylesheet"
-        href="./css/home.css"
-    >
+    <link rel="stylesheet" href="./css/home.css" />
+  </head>
 
-</head>
+  <body>
+    <div class="home page-enter">
+      <div class="home-background"></div>
 
+      <canvas id="particles"></canvas>
 
-<body>
-
-<div class="home page-enter">
-
-    <div class="home-background"></div>
-
-    <canvas id="particles"></canvas>
-
-
-    <div class="home-content">
-
+      <div class="home-content">
         <div class="hero-content">
+          <h1>Portal PontMedusa</h1>
 
-            <h1>
-                Portal PontMedusa
-            </h1>
+          <div class="hero-subtitle">
+            <span class="parallax-text text-1"> Computer Freak </span>
 
+            <span class="separator"> | </span>
 
-            <div class="hero-subtitle">
+            <span class="parallax-text text-2"> Astrophile </span>
 
-                <span class="parallax-text text-1">
-                    Computer Freak
-                </span>
+            <span class="separator"> | </span>
 
-                <span class="separator">
-                    |
-                </span>
-
-                <span class="parallax-text text-2">
-                    Astrophile
-                </span>
-
-                <span class="separator">
-                    |
-                </span>
-
-                <span class="parallax-text text-3">
-                    Workaholic
-                </span>
-
-            </div>
-
+            <span class="parallax-text text-3"> Workaholic </span>
+          </div>
         </div>
+      </div>
 
+      <div class="objects">
+        <a href="./about.html" class="floating-button object-1">
+          <img src="./img/1.png" alt="About" />
+        </a>
+
+        <a href="./project.html" class="floating-button object-2">
+          <img src="./img/2.png" alt="Project" />
+        </a>
+
+        <a href="./last.html" class="floating-button object-3">
+          <img src="./img/3.png" alt="Contact" />
+        </a>
+      </div>
     </div>
 
+    <script src="./js/script.js"></script>
 
-    <div class="objects">
-
-
-        <a
-            href="./about.html"
-            class="floating-button object-1"
-        >
-            <img
-                src="./img/1.png"
-                alt="About"
-            >
-        </a>
-
-
-        <a
-            href="./project.html"
-            class="floating-button object-2"
-        >
-            <img
-                src="./img/2.png"
-                alt="Project"
-            >
-        </a>
-
-
-        <a
-            href="./last.html"
-            class="floating-button object-3"
-        >
-            <img
-                src="./img/3.png"
-                alt="Contact"
-            >
-        </a>
-
-
-    </div>
-
-</div>
-
-
-<script src="./js/script.js"></script>
-
-
-<script>
-
-window.addEventListener(
-    "load",
-    () => {
-
+    <script>
+      window.addEventListener("load", () => {
         requestAnimationFrame(() => {
-
-            document
-                .querySelector(".page-enter")
-                .classList.add("loaded");
-
+          document.querySelector(".page-enter").classList.add("loaded");
         });
-
-    }
-);
-
-</script>
-
-</body>
-
+      });
+    </script>
+  </body>
 </html>

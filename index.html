@@ -1,64 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Portal PontMedusa</title>
 
-    <link
-        rel="stylesheet"
-        href="./css/index.css"
-    >
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
 
-</head>
+  <body>
+    <div id="app">
+      <div class="computer-scene">
+        <div class="computer" onclick="openHome()">
+          <div class="monitor">
+            <embed src="./img/intro.svg" type="image/svg+xml" class="screen" />
+          </div>
 
+          <div class="stand"></div>
 
-<body>
-
-<div id="app">
-
-    <div class="computer-scene">
-
-        <div
-            class="computer"
-            onclick="openHome()"
-        >
-
-<div class="monitor">
-
-            <embed
-                src="./img/intro.svg"
-                type="image/svg+xml"
-                class="screen"
-            >
-
+          <div class="base"></div>
         </div>
+      </div>
 
-            <div class="stand"></div>
-
-            <div class="base"></div>
-
-        </div>
-
+      <div class="instruction">Hint! Klik untuk berjelajah di Website ini</div>
     </div>
 
-
-    <div class="instruction">
-        Hint! Klik untuk berjelajah di Website ini
-    </div>
-
-</div>
-
-
-<script src="./js/index.js"></script>
-
-</body>
-
+    <script src="./js/index.js"></script>
+  </body>
 </html>

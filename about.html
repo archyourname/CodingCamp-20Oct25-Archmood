@@ -1,176 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
     <title>PONT MINIGAMES</title>
 
-    <link
-        rel="stylesheet"
-        href="css/about.css"
-    >
+    <link rel="stylesheet" href="css/about.css" />
+  </head>
 
-</head>
-
-
-<body>
-
+  <body>
     <div id="game">
-
-        <!-- =================================
+      <!-- =================================
              CANVAS
         ================================== -->
 
-        <canvas id="c"></canvas>
+      <canvas id="c"></canvas>
 
-
-        <!-- =================================
+      <!-- =================================
              HUD
         ================================== -->
 
-        <div id="hud">
+      <div id="hud">
+        <!-- BRAND / HINT -->
 
-            <!-- BRAND / HINT -->
+        <div class="brand">Hint! Gunakan keyboard untuk berinteraksi</div>
 
-            <div class="brand">
-                Hint! Gunakan keyboard untuk berinteraksi
-            </div>
-
-
-            <!-- =================================
+        <!-- =================================
                  PC CONTROLS
             ================================== -->
 
-            <div class="controls">
+        <div class="controls">
+          <div>
+            <kbd>A</kbd>
+            <kbd>D</kbd>
+            /
+            <kbd>←</kbd>
+            <kbd>→</kbd>
+            Move
+          </div>
 
-                <div>
-                    <kbd>A</kbd>
-                    <kbd>D</kbd>
-                    /
-                    <kbd>←</kbd>
-                    <kbd>→</kbd>
-                    Move
-                </div>
+          <div>
+            <kbd>W</kbd>
+            /
+            <kbd>SPACE</kbd>
+            Jump
+          </div>
 
+          <div>
+            <kbd>E</kbd>
+            Interact
+          </div>
+        </div>
 
-                <div>
-                    <kbd>W</kbd>
-                    /
-                    <kbd>SPACE</kbd>
-                    Jump
-                </div>
-
-
-                <div>
-                    <kbd>E</kbd>
-                    Interact
-                </div>
-
-            </div>
-
-
-            <!-- =================================
+        <!-- =================================
                  INTERACTION PROMPT
             ================================== -->
 
-            <div id="prompt">
-                [ E ] Interact
-            </div>
+        <div id="prompt">[ E ] Interact</div>
 
-
-            <!-- =================================
+        <!-- =================================
                  DIALOG
             ================================== -->
 
-            <div id="dialog">
+        <div id="dialog">
+          <div class="name"></div>
 
-                <div class="name"></div>
-
-                <div class="text"></div>
-
-            </div>
-
+          <div class="text"></div>
         </div>
+      </div>
 
-
-        <!-- =================================
+      <!-- =================================
              SCREEN EFFECTS
         ================================== -->
 
-        <div id="vignette"></div>
+      <div id="vignette"></div>
 
-        <div id="fade"></div>
+      <div id="fade"></div>
 
-
-        <!-- =================================
+      <!-- =================================
              MOBILE CONTROLS
         ================================== -->
 
-        <div class="mobile">
+      <div class="mobile">
+        <!-- MOVEMENT -->
 
-            <!-- MOVEMENT -->
+        <div class="movement">
+          <button id="left" type="button" aria-label="Bergerak ke kiri">
+            ←
+          </button>
 
-            <div class="movement">
-
-                <button
-                    id="left"
-                    type="button"
-                    aria-label="Bergerak ke kiri"
-                >
-                    ←
-                </button>
-
-                <button
-                    id="right"
-                    type="button"
-                    aria-label="Bergerak ke kanan"
-                >
-                    →
-                </button>
-
-            </div>
-
-
-            <!-- ACTION -->
-
-            <div class="actions">
-
-                <button
-                    id="jump"
-                    type="button"
-                    aria-label="Melompat"
-                >
-                    ↑
-                </button>
-
-                <button
-                    id="interact"
-                    type="button"
-                    aria-label="Interaksi"
-                >
-                    E
-                </button>
-
-            </div>
-
+          <button id="right" type="button" aria-label="Bergerak ke kanan">
+            →
+          </button>
         </div>
 
+        <!-- ACTION -->
 
-        <!-- =================================
+        <div class="actions">
+          <button id="jump" type="button" aria-label="Melompat">↑</button>
+
+          <button id="interact" type="button" aria-label="Interaksi">E</button>
+        </div>
+      </div>
+
+      <!-- =================================
              JAVASCRIPT
         ================================== -->
 
-        <script src="js/about.js"></script>
-
+      <script src="js/about.js"></script>
     </div>
-
-</body>
-
+  </body>
 </html>
