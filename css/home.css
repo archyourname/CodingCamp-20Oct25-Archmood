@@ -1,414 +1,326 @@
 /* =====================================================
    GLOBAL
 ===================================================== */
-
 * {
-  box-sizing: border-box;
-
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-
-  font-family: Inter, Arial, sans-serif;
-
-  background: #050505;
-
-  color: white;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Inter, Arial, sans-serif;
+    background: #050505;
+    color: white;
 }
 
 button {
-  font-family: inherit;
+    font-family: inherit;
 }
 
 /* =====================================================
    HOME
 ===================================================== */
-
 .home {
-  position: relative;
-
-  width: 100%;
-  height: 100vh;
-
-  overflow: hidden;
-
-  background: #050505;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #050505;
 }
 
 /* =====================================================
    PAGE ENTER
 ===================================================== */
-
 .page-enter {
-  opacity: 0;
-
-  transform: scale(1.35);
+    opacity: 0;
+    transform: scale(1.35);
 }
 
 .page-enter.loaded {
-  opacity: 1;
-
-  transform: scale(1);
-
-  transition:
-    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 1s ease;
+    opacity: 1;
+    transform: scale(1);
+    transition:
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 1s ease;
 }
 
 /* =====================================================
    BACKGROUND
 ===================================================== */
-
 .home-background {
-  position: absolute;
-
-  inset: -5%;
-
-  z-index: 0;
-
-  background-image: url("../img/background.jpg");
-
-  background-size: cover;
-
-  background-position: center;
-
-  background-repeat: no-repeat;
-
-  transform: scale(1.05);
-
-  animation: backgroundMove 15s ease-in-out infinite alternate;
+    position: absolute;
+    inset: -5%;
+    z-index: 0;
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+    animation: backgroundMove 15s ease-in-out infinite alternate;
 }
 
 .home-background::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.7));
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.7));
 }
 
 @keyframes backgroundMove {
-  from {
-    transform: scale(1.05);
-  }
+    from {
+        transform: scale(1.05);
+    }
 
-  to {
-    transform: scale(1.15);
-  }
+    to {
+        transform: scale(1.15);
+    }
 }
 
 /* =====================================================
    PARTICLES
 ===================================================== */
-
 #particles {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  z-index: 1;
-
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* =====================================================
    CONTENT
 ===================================================== */
-
 .home-content {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-
-  z-index: 2;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  padding: 30px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
 }
 
 .hero-content {
-  position: relative;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* =====================================================
    TITLE
 ===================================================== */
-
 .home-content h1 {
-  font-size: clamp(32px, 4.5vw, 60px);
-
-  line-height: 0.95;
-
-  font-weight: 600;
-
-  letter-spacing: -2px;
-
-  animation: textFloat 5s ease-in-out infinite;
+    font-size: clamp(32px, 4.5vw, 60px);
+    line-height: 0.95;
+    font-weight: 600;
+    letter-spacing: -2px;
+    animation: textFloat 5s ease-in-out infinite;
 }
 
 @keyframes textFloat {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
 
-  50% {
-    transform: translate3d(0, -8px, 0) rotate(0.5deg);
-  }
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(0, -8px, 0) rotate(0.5deg);
+    }
 }
 
 /* =====================================================
    SUBTITLE
 ===================================================== */
-
 .hero-subtitle {
-  margin-top: 18px;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 9px;
-
-  color: #aaa;
-
-  font-size: clamp(14px, 1.5vw, 18px);
-
-  white-space: nowrap;
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    color: #aaa;
+    font-size: clamp(14px, 1.5vw, 18px);
+    white-space: nowrap;
 }
 
 .parallax-text {
-  display: inline-block;
-
-  --x: 0px;
-  --y: 0px;
-
-  transform: translate3d(var(--x), var(--y), 0);
-
-  transition: transform 0.15s ease-out;
-
-  will-change: transform;
+    display: inline-block;
+    --x: 0px;
+    --y: 0px;
+    transform: translate3d(var(--x), var(--y), 0);
+    transition: transform 0.15s ease-out;
+    will-change: transform;
 }
 
 .text-1 {
-  --depth: 15;
+    --depth: 15;
 }
 
 .text-2 {
-  --depth: 30;
+    --depth: 30;
 }
 
 .text-3 {
-  --depth: 45;
+    --depth: 45;
 }
 
 .separator {
-  display: inline-block;
-
-  opacity: 0.4;
-
-  user-select: none;
+    display: inline-block;
+    opacity: 0.4;
+    user-select: none;
 }
 
 /* =====================================================
    OBJECTS
 ===================================================== */
-
 .objects {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 5;
-
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .floating-button {
-  position: absolute;
-
-  width: 140px;
-  height: 140px;
-
-  padding: 0;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  cursor: pointer;
-
-  pointer-events: auto;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  transition: filter 0.3s ease;
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.3s ease;
 }
 
 .floating-button img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  display: block;
-
-  user-select: none;
-
-  -webkit-user-drag: none;
-
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
 }
 
 /* =====================================================
    POSITIONS
 ===================================================== */
-
 .object-1 {
-  top: 25%;
-  left: 18%;
-
-  animation: float1 4s ease-in-out infinite;
+    top: 25%;
+    left: 18%;
+    animation: float1 4s ease-in-out infinite;
 }
 
 .object-2 {
-  top: 50%;
-  right: 18%;
-
-  animation: float2 5s ease-in-out infinite;
+    top: 50%;
+    right: 18%;
+    animation: float2 5s ease-in-out infinite;
 }
 
 .object-3 {
-  bottom: 15%;
-  left: 48%;
-
-  animation: float3 4.5s ease-in-out infinite;
+    bottom: 15%;
+    left: 48%;
+    animation: float3 4.5s ease-in-out infinite;
 }
 
 /* =====================================================
    FLOAT 1
 ===================================================== */
-
 @keyframes float1 {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
 
-  50% {
-    transform: translateY(-15px) rotate(2deg);
-  }
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
 }
 
 /* =====================================================
    FLOAT 2
 ===================================================== */
-
 @keyframes float2 {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
 
-  50% {
-    transform: translateY(18px) rotate(-2deg);
-  }
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(18px) rotate(-2deg);
+    }
 }
 
 /* =====================================================
    FLOAT 3
 ===================================================== */
-
 @keyframes float3 {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
 
-  50% {
-    transform: translateY(-12px) rotate(1deg);
-  }
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(1deg);
+    }
 }
 
 /* =====================================================
    HOVER
 ===================================================== */
-
 .floating-button:hover img {
-  transform: scale(1.1);
-
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
+    transform: scale(1.1);
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
 }
 
 .floating-button:active img {
-  transform: scale(0.92);
+    transform: scale(0.92);
 }
 
 /* =====================================================
    MOBILE
 ===================================================== */
-
 @media (max-width: 600px) {
-  .floating-button {
-    width: 90px;
-    height: 90px;
-  }
+    .floating-button {
+        width: 90px;
+        height: 90px;
+    }
 
-  .object-1 {
-    top: 22%;
-    left: 8%;
-  }
+    .object-1 {
+        top: 22%;
+        left: 8%;
+    }
 
-  .object-2 {
-    top: 50%;
-    right: 8%;
-  }
+    .object-2 {
+        top: 50%;
+        right: 8%;
+    }
 
-  .object-3 {
-    bottom: 12%;
-    left: 40%;
-  }
+    .object-3 {
+        bottom: 12%;
+        left: 40%;
+    }
 
-  .hero-subtitle {
-    gap: 5px;
-
-    font-size: 12px;
-  }
+    .hero-subtitle {
+        gap: 5px;
+        font-size: 12px;
+    }
 }

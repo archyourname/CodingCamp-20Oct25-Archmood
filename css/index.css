@@ -1,7 +1,6 @@
 /* =====================================================
    GLOBAL
 ===================================================== */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,13 +11,9 @@ html,
 body {
   width: 100%;
   height: 100%;
-
   overflow: hidden;
-
   font-family: Inter, Arial, sans-serif;
-
   background: #050505;
-
   color: white;
 }
 
@@ -29,34 +24,24 @@ button {
 /* =====================================================
    APP
 ===================================================== */
-
 #app {
   position: relative;
-
   width: 100%;
   height: 100vh;
-
   overflow: hidden;
-
   background: #050505;
 }
 
 /* =====================================================
    COMPUTER SCENE
 ===================================================== */
-
 .computer-scene {
   position: absolute;
-
   inset: 0;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   z-index: 10;
-
   transition:
     transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.8s ease;
@@ -64,21 +49,16 @@ button {
 
 .computer-scene.zoom-out {
   transform: scale(9);
-
   opacity: 0;
-
   pointer-events: none;
 }
 
 /* =====================================================
    COMPUTER
 ===================================================== */
-
 .computer {
   width: min(850px, 85vw);
-
   cursor: pointer;
-
   transition: transform 0.3s ease;
 }
 
@@ -89,34 +69,25 @@ button {
 /* =====================================================
    MONITOR
 ===================================================== */
-
 .monitor {
   width: 100%;
-
   aspect-ratio: 16 / 9;
-
   padding: 12px;
-
   background: #292b30;
-
   border: 10px solid #41444b;
-
   border-radius: 20px;
-
   box-shadow:
     0 50px 120px rgba(0, 0, 0, 0.8),
     0 0 40px rgba(55, 120, 190, 0.22),
     0 0 100px rgba(55, 120, 190, 0.16),
     0 0 180px rgba(55, 120, 190, 0.1),
     0 0 300px rgba(55, 120, 190, 0.05);
-
   animation: xpGlow 5s ease-in-out infinite;
 }
 
 /* =====================================================
    WINDOWS XP GLOW
 ===================================================== */
-
 @keyframes xpGlow {
   0% {
     box-shadow:
@@ -149,76 +120,57 @@ button {
 /* =====================================================
    SCREEN
 ===================================================== */
-
 .screen {
   display: block;
-
   width: 100%;
   height: 100%;
-
   border-radius: 7px;
-
   overflow: hidden;
 }
 
 /* =====================================================
    STAND
 ===================================================== */
-
 .stand {
   width: 120px;
   height: 100px;
-
   margin: auto;
-
   background: #34363c;
 }
 
 /* =====================================================
    BASE
 ===================================================== */
-
 .base {
   width: 280px;
   height: 22px;
-
   margin: auto;
-
   border-radius: 30px;
-
   background: #34363c;
 }
 
 /* =====================================================
    INSTRUCTION
 ===================================================== */
-
 .instruction {
   position: absolute;
-
   left: 50%;
   bottom: 35px;
-
   transform: translateX(-50%);
-
   z-index: 20;
-
   color: #aaa;
-
   font-size: 14px;
-
   animation: pulse 2s infinite;
-
   transition: opacity 0.5s ease;
 }
 
 .instruction.hide {
   opacity: 0;
-
   pointer-events: none;
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 0.3;
@@ -232,7 +184,6 @@ button {
 /* =====================================================
    MOBILE
 ===================================================== */
-
 @media (max-width: 600px) {
   .computer {
     width: 92vw;
@@ -240,12 +191,11 @@ button {
 
   .instruction {
     bottom: 20px;
-
     font-size: 13px;
   }
 }
-/* ================= LYNCH BRAND ================= */
 
+/* ================= LYNCH BRAND ================= */
 .brand {
   display: flex;
   flex-direction: column;
@@ -254,20 +204,14 @@ button {
 
 .back-home-logo {
   margin-top: 7px;
-
   color: #56616b;
-
   text-decoration: none;
-
   font-size: 7px;
-
   letter-spacing: 2px;
-
   transition: 0.3s;
 }
 
 .back-home-logo:hover {
   color: var(--cyan);
-
   text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
 }
